@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default class App extends Component {
-    static displayName = App.name;
 
     constructor(props) {
         super(props);
@@ -52,7 +51,7 @@ export default class App extends Component {
     }
 
     async populateWeatherData() {
-        const response = await fetch('weatherforecast');
+        const response = await fetch('https://criminalminds-server.azurewebsites.net/weatherforecast');
         const data = await response.json();
         this.setState({ forecasts: data, loading: false });
     }
