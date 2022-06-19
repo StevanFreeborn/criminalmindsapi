@@ -52,9 +52,9 @@ export default class App extends Component {
 
     async populateWeatherData() {
 
-        const url = '/api/seasons';
+        let url = '/api/seasons';
 
-        if (process.env.NODE_ENV == 'production') {
+        if (process.env.NODE_ENV === 'production') {
             url = 'https://criminalminds-server.azurewebsites.net' + url;
         }
 
