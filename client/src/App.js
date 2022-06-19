@@ -51,7 +51,14 @@ export default class App extends Component {
     }
 
     async populateWeatherData() {
-        const response = await fetch('https://criminalminds-server.azurewebsites.net/weatherforecast');
+
+        const url = '/api/seasons';
+
+        if (process.env.NODE_ENV == 'production') {
+            url = 'https://criminalminds-server.azurewebsites.net' + url;
+        }
+
+        const response = await fetch(url);
         const data = await response.json();
         this.setState({ forecasts: data, loading: false });
     }
