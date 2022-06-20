@@ -31,6 +31,7 @@ namespace server.Models
         public string[]? WrittenBy { get; set; }
 
         [BsonElement("airDate")]
+        [BsonDateTimeOptions(DateOnly = true)]
         public DateTime? AirDate { get; set; }
 
         [BsonElement("usViewersInMillions")]

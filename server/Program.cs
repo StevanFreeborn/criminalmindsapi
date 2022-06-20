@@ -4,10 +4,21 @@ using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
 
-if (args.Length == 1 && args[0].ToLower() == "seed")
+if (args.Length == 2 && args[0].ToLower() == "seed")
 {
     var seeder = new Seeder();
-    _ = seeder.SeedSeasonsAsync();
+
+    if (args[1].ToLower() == "seasons")
+    {
+        await seeder.SeedSeasonsAsync();
+    }
+
+    if (args[1].ToLower() == "episodes")
+    {
+        await seeder.SeedEpisodesAsync();
+    }
+
+
 }
 
 var builder = WebApplication.CreateBuilder(args);

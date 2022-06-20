@@ -7,25 +7,27 @@ namespace server.Persistence.Seed
 {
     public class Seeder
     {
-        private readonly IMongoClient client;
-        private readonly IMongoDatabase database;
-        private readonly IConfiguration configuration;
-        private readonly IMongoCollection<Season> Seasons;
+        private readonly IMongoClient _client;
+        private readonly IMongoDatabase _database;
+        private readonly IConfiguration _config;
+        private readonly IMongoCollection<Season> _seasons;
+        private readonly IMongoCollection<Episode> _episodes;
 
         public Seeder()
         {
-            configuration = new ConfigurationBuilder()
+            _config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            client = new MongoClient(configuration.GetSection("MongoDBSettings:ConnectionString").Value);
-            database = client.GetDatabase(configuration.GetSection("MongoDBSettings:DatabaseName").Value);
-            Seasons = database.GetCollection<Season>(configuration.GetSection("MongoDBSettings:SeasonsCollection").Value);
+            _client = new MongoClient(_config.GetSection("MongoDBSettings:ConnectionString").Value);
+            _database = _client.GetDatabase(_config.GetSection("MongoDBSettings:DatabaseName").Value);
+            _seasons = _database.GetCollection<Season>(_config.GetSection("MongoDBSettings:SeasonsCollection").Value);
+            _episodes = _database.GetCollection<Episode>(_config.GetSection("MongoDBSettings:EpisodesCollection").Value);
         }
 
         public async Task SeedSeasonsAsync()
         {
-            await Seasons.DeleteManyAsync(season => true);
+            await _seasons.DeleteManyAsync(season => true);
 
             var seasonsFilePath = Path.Combine(AppContext.BaseDirectory, "Persistence/Seed/Data/seasons.json");
             var seasonsJson = File.ReadAllText(seasonsFilePath);
@@ -33,7 +35,21 @@ namespace server.Persistence.Seed
                
             if(seasons != null)
             {
-                await Seasons.InsertManyAsync(seasons);
+                await _seasons.InsertManyAsync(seasons);
+            }
+        }
+
+        public async Task SeedEpisodesAsync()
+        {
+            await _episodes.DeleteManyAsync(episode => true);
+
+            var episodesFilePath = Path.Combine(AppContext.BaseDirectory, "Persistence/Seed/Data/episodes.json");
+            var episodesJson = File.ReadAllText(episodesFilePath);
+            var episodes = JsonSerializer.Deserialize<List<Episode>>(episodesJson);
+
+            if (episodes != null)
+            {
+                await _episodes.InsertManyAsync(episodes);
             }
         }
     }
