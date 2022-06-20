@@ -15,6 +15,8 @@ builder.Services.AddSingleton<IDbContext, DbContext>();
 
 builder.Services.AddScoped<ISeasonRepository, SeasonRepository>();
 
+builder.Services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

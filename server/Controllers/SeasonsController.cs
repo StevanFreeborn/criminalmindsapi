@@ -5,7 +5,7 @@ using server.Persistence.Repositories;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("api/seasons")]
+    [Route("/api/seasons")]
     [Produces("application/json")]
     public class SeasonsController : ControllerBase
     {

@@ -8,7 +8,12 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "client\client.esp
 		{1EF6EB3C-FCA0-4FF6-8A99-373AFAC6E4EC} = {1EF6EB3C-FCA0-4FF6-8A99-373AFAC6E4EC}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csproj", "{1EF6EB3C-FCA0-4FF6-8A99-373AFAC6E4EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "server", "server\server.csproj", "{1EF6EB3C-FCA0-4FF6-8A99-373AFAC6E4EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FE01B2A-2F23-477B-BC6A-1E71781A61DB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
