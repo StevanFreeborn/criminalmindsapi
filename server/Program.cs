@@ -2,6 +2,13 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using server.Persistence;
 using server.Persistence.Repositories;
+using server.Persistence.Seed;
+
+if (args.Length == 1 && args[0].ToLower() == "seed")
+{
+    var seeder = new Seeder();
+    _ = seeder.SeedAsync();
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,3 +49,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
