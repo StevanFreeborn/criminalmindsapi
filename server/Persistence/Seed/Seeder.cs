@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text.Json;
 using MongoDB.Driver;
 using server.Models;
 
@@ -22,12 +23,17 @@ namespace server.Persistence.Seed
             Seasons = database.GetCollection<Season>(configuration.GetSection("MongoDBSettings:SeasonsCollection").Value);
         }
 
-        public async Task SeedAsync()
+        public async Task SeedSeasonsAsync()
         {
-            var seasons = await Seasons.Find(season => true).ToListAsync();
-            foreach (var season in seasons)
+            await Seasons.DeleteManyAsync(season => true);
+
+            var seasonsFilePath = Path.Combine(AppContext.BaseDirectory, "Persistence/Seed/Data/seasons.json");
+            var seasonsJson = File.ReadAllText(seasonsFilePath);
+            var seasons = JsonSerializer.Deserialize<List<Season>>(seasonsJson);
+               
+            if(seasons != null)
             {
-                Console.WriteLine(season);
+                await Seasons.InsertManyAsync(seasons);
             }
         }
     }

@@ -7,7 +7,7 @@ using server.Persistence.Seed;
 if (args.Length == 1 && args[0].ToLower() == "seed")
 {
     var seeder = new Seeder();
-    _ = seeder.SeedAsync();
+    _ = seeder.SeedSeasonsAsync();
 }
 
 var builder = WebApplication.CreateBuilder(args);

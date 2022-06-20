@@ -1,0 +1,92 @@
+[
+  {
+    "SeasonNumber": 1,
+    "NumberOfEpisodes": 22,
+    "DateFirstAired": "2005-09-22",
+    "DateLastAired": "2006-05-10"
+  },
+  {
+    "SeasonNumber": 2,
+    "NumberOfEpisodes": 23,
+    "DateFirstAired": "2006-09-20",
+    "DateLastAired": "2007-05-16"
+  },
+  {
+    "SeasonNumber": 3,
+    "NumberOfEpisodes": 20,
+    "DateFirstAired": "2007-09-26",
+    "DateLastAired": "2008-05-21"
+  },
+  {
+    "SeasonNumber": 4,
+    "NumberOfEpisodes": 26,
+    "DateFirstAired": "2008-09-24",
+    "DateLastAired": "2009-05-20"
+  },
+  {
+    "SeasonNumber": 5,
+    "NumberOfEpisodes": 23,
+    "DateFirstAired": "2009-09-23",
+    "DateLastAired": "2010-05-26"
+  },
+  {
+    "SeasonNumber": 6,
+    "NumberOfEpisodes": 24,
+    "DateFirstAired": "2010-09-22",
+    "DateLastAired": "2011-05-18"
+  },
+  {
+    "SeasonNumber": 7,
+    "NumberOfEpisodes": 24,
+    "DateFirstAired": "2011-09-21",
+    "DateLastAired": "2012-05-16"
+  },
+  {
+    "SeasonNumber": 8,
+    "NumberOfEpisodes": 24,
+    "DateFirstAired": "2012-09-26",
+    "DateLastAired": "2013-05-22"
+  },
+  {
+    "SeasonNumber": 9,
+    "NumberOfEpisodes": 24,
+    "DateFirstAired": "2013-09-25",
+    "DateLastAired": "2014-05-14"
+  },
+  {
+    "SeasonNumber": 10,
+    "NumberOfEpisodes": 23,
+    "DateFirstAired": "2014-10-01",
+    "DateLastAired": "2015-05-06"
+  },
+  {
+    "SeasonNumber": 11,
+    "NumberOfEpisodes": 22,
+    "DateFirstAired": "2015-09-30",
+    "DateLastAired": "2016-05-04"
+  },
+  {
+    "SeasonNumber": 12,
+    "NumberOfEpisodes": 22,
+    "DateFirstAired": "2016-09-28",
+    "DateLastAired": "2017-05-10"
+  },
+  {
+    "SeasonNumber": 13,
+    "NumberOfEpisodes": 22,
+    "DateFirstAired": "2017-09-27",
+    "DateLastAired": "2018-04-18"
+  },
+  {
+    "SeasonNumber": 14,
+    "NumberOfEpisodes": 15,
+    "DateFirstAired": "2018-10-03",
+    "DateLastAired": "2019-02-06"
+  },
+  {
+    "SeasonNumber": 15,
+    "NumberOfEpisodes": 10,
+    "DateFirstAired": "2020-01-08",
+    "DateLastAired": "2020-02-19"
+  }
+]
