@@ -2,9 +2,10 @@
 using server.Models;
 using server.Persistence.Repositories;
 
-namespace server.Controllers
+namespace server.Controllers.v1
 {
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("/api/seasons")]
     [Produces("application/json")]
     public class SeasonsController : ControllerBase
@@ -16,6 +17,7 @@ namespace server.Controllers
             _seasonRepository = seasonRepository;
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Season>), 200)]
         [ProducesResponseType(500)]
@@ -33,6 +35,7 @@ namespace server.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
         [ProducesResponseType(typeof(Season), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 404)]

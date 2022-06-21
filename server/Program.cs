@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using server.Options;
 using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
@@ -17,8 +21,6 @@ if (args.Length == 2 && args[0].ToLower() == "seed")
     {
         await seeder.SeedEpisodesAsync();
     }
-
-
 }
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,18 +41,38 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+builder.Services.AddApiVersioning(config =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "criminalmindsapi", Version = "v1" });
+    config.DefaultApiVersion = new ApiVersion(1, 0);
+    config.AssumeDefaultVersionWhenUnspecified = true;
+    config.ReportApiVersions = true;
+    config.ApiVersionReader = new HeaderApiVersionReader("x-api-version");
+});
+
+builder.Services.AddVersionedApiExplorer(config =>
+{
+    config.GroupNameFormat = "'v'VVV";
 });
 
 var app = builder.Build();
 
 app.UseSwagger();
 
-app.UseSwaggerUI(c =>
+app.UseSwaggerUI(options =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "criminalmindsapi v1");
+    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+    
+    foreach (var description in provider.ApiVersionDescriptions)
+    {
+        var url = $"/swagger/{description.GroupName}/swagger.json";
+        var name = $"criminalmindsapi v{description.ApiVersion.ToString()}";
+
+        options.SwaggerEndpoint(url, name);
+    }
 });
 
 app.UseHttpsRedirection();
