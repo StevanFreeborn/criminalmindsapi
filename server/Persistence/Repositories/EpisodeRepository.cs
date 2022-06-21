@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using server.Models;
+using System.Linq;
 
 namespace server.Persistence.Repositories
 {
@@ -32,6 +33,36 @@ namespace server.Persistence.Repositories
                 if (filter?.EndDate != null)
                 {
                     query = query.Where(episode => episode.AirDate <= filter.EndDate);
+                }
+
+                if (filter?.Title != null)
+                {
+                    query = query.Where(episode => episode.Title!.ToLower() == filter.Title.ToLower());
+                }
+
+                if (filter?.SummaryKeyword != null)
+                {
+                    query = query.Where(episode => episode.Summary!.ToLower().Contains(filter.SummaryKeyword.ToLower()));
+                }
+
+                if (filter?.DirectedBy != null)
+                {
+                    query = query.Where(episode => episode.DirectedBy!.ToLower().Contains(filter.DirectedBy.ToLower()));
+                }
+
+                if (filter?.WrittenBy != null)
+                {
+                    query = query.Where(episode => episode.WrittenBy.Any(e => e.ToLower().Contains(filter.WrittenBy.ToLower())));
+                }
+
+                if (filter?.ViewersRangeStart != null)
+                {
+                    query = query.Where(episode => episode.UsViewersInMillions >= filter.ViewersRangeStart);
+                }
+
+                if (filter?.ViewersRangeEnd != null)
+                {
+                    query = query.Where(episode => episode.UsViewersInMillions <= filter.ViewersRangeEnd);
                 }
 
                 return await query.ToListAsync();

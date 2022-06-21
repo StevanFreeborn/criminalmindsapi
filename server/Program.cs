@@ -7,6 +7,7 @@ using server.Options;
 using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
+using System.Reflection;
 
 if (args.Length == 2 && args[0].ToLower() == "seed")
 {
@@ -41,7 +42,13 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    options.IncludeXmlComments(xmlPath);
+});
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
