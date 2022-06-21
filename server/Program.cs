@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using server.Filters;
 using server.Options;
 using server.Persistence;
 using server.Persistence.Repositories;
@@ -48,6 +49,7 @@ builder.Services.AddSwaggerGen(options =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
     options.IncludeXmlComments(xmlPath);
+    options.OperationFilter<ApiVersionOperationFilter>();
 });
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();

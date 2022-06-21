@@ -17,11 +17,19 @@ namespace server.Controllers.v1
             _episodeRepository = episodeRepository;
         }
 
+        /// <summary>
+        /// Gets a collection of episodes.
+        /// </summary>
+        /// <param name="filter">Filter parameters passed from query string.</param>
+        /// <response code="200">Returns the collection of episodes requested.</response>
+        /// <response code="400">Not a valid request.</response>
+        /// <response code="500">Failed to get episodes.</response>
+        /// <returns>A collection of episodes.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Episode>), 200)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(List<Episode>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<Episode>>> GetEpisodesAsync([FromQuery] EpisodeFilter? filter)
         {            
             try
@@ -36,12 +44,21 @@ namespace server.Controllers.v1
             }
         }
 
+        /// <summary>
+        /// Gets an episode by its number in the series.
+        /// </summary>
+        /// <param name="number">The number of the episode in the series.</param>
+        /// <response code="200">Returns the episode requested.</response>
+        /// <response code="400">Not a valid request.</response>
+        /// <response code="404">Unable to find an episode with the provided number.</response>
+        /// <response code="500">Failed to get episode.</response>
+        /// <returns>The episode requested.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
-        [ProducesResponseType(typeof(Episode), 200)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
-        [ProducesResponseType(typeof(ProblemDetails), 404)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(Episode), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Episode>> GetEpisodeByNumberAsync(int number)
         {
             try

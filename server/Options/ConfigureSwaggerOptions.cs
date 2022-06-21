@@ -30,7 +30,13 @@ namespace server.Options
             {
                 Title = "criminalmindsapi",
                 Version = description.ApiVersion.ToString(),
-                Description = "An api that provides information about the Criminal Minds series."
+                Description = "An api that provides information about the Criminal Minds series.",
+                Contact = new OpenApiContact
+                {
+                    Name = "Stevan Freeborn",
+                    Email = "stevan.freeborn@gmail.com",
+                    Url = new Uri("https://stevanfreeborn.com")
+                }
             };
 
             return info;

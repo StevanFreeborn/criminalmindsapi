@@ -19,8 +19,8 @@ namespace server.Controllers.v1
 
         [MapToApiVersion("1.0")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Season>), 200)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(List<Season>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<Season>>> GetSeasonsAsync()
         {
             try
@@ -37,10 +37,10 @@ namespace server.Controllers.v1
 
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
-        [ProducesResponseType(typeof(Season), 200)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
-        [ProducesResponseType(typeof(ProblemDetails), 404)]
-        [ProducesResponseType(typeof(ProblemDetails),500)]
+        [ProducesResponseType(typeof(Season), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Season>> GetSeasonByNumberAsync(int number)
         {
             try
