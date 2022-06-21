@@ -29,13 +29,15 @@ namespace server.Persistence.Seed
         {
             await _seasons.DeleteManyAsync(season => true);
 
-            var seasonsFilePath = Path.Combine(AppContext.BaseDirectory, "Persistence/Seed/Data/seasons.json");
+            var fileName = "seasons.json";
+            var seasonsFilePath = Path.Combine(AppContext.BaseDirectory, $"Persistence/Seed/Data/{fileName}");
             var seasonsJson = File.ReadAllText(seasonsFilePath);
             var seasons = JsonSerializer.Deserialize<List<Season>>(seasonsJson);
                
             if(seasons != null)
             {
                 await _seasons.InsertManyAsync(seasons);
+                Console.WriteLine($"Seeded databases with seasons from {fileName}");
             }
         }
 
@@ -43,13 +45,15 @@ namespace server.Persistence.Seed
         {
             await _episodes.DeleteManyAsync(episode => true);
 
-            var episodesFilePath = Path.Combine(AppContext.BaseDirectory, "Persistence/Seed/Data/episodes.json");
+            var fileName = "episodes.json";
+            var episodesFilePath = Path.Combine(AppContext.BaseDirectory, $"Persistence/Seed/Data/{fileName}");
             var episodesJson = File.ReadAllText(episodesFilePath);
             var episodes = JsonSerializer.Deserialize<List<Episode>>(episodesJson);
 
             if (episodes != null)
             {
                 await _episodes.InsertManyAsync(episodes);
+                Console.WriteLine($"Seeded databases with episodes from {fileName}");
             }
         }
     }
