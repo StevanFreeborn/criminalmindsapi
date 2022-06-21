@@ -32,5 +32,18 @@ namespace server.Persistence.Repositories
                 throw;
             }
         }
+
+        public async Task<Episode> GetEpisodeByNumberAsync(int number)
+        {
+            try
+            {
+                return await _context.Episodes.Find(episode => episode.NumberInSeries == number).SingleOrDefaultAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

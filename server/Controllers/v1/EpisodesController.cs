@@ -34,5 +34,27 @@ namespace server.Controllers.v1
                 return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get episodes");
             }
         }
+
+        [MapToApiVersion("1.0")]
+        [HttpGet("{number:int}")]
+        [ProducesResponseType(typeof(Episode), 200)]
+        [ProducesResponseType(500)]
+        public async Task<ActionResult<Episode>> GetEpisodeByNumberAsync(int number)
+        {
+
+            try
+            {
+                var episode = await _episodeRepository.GetEpisodeByNumberAsync(number);
+
+                if (episode == null) return NotFound(new ErrorResponse($"Could not find episode number {number}"));
+
+                return Ok(episode);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get season");
+            }
+        }
     }
 }
