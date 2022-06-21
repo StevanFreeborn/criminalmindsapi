@@ -24,6 +24,16 @@ namespace server.Persistence.Repositories
                     query = query.Where(episode => episode.Season == filter.Season);
                 }
 
+                if (filter?.StartDate != null)
+                {
+                    query = query.Where(episode => episode.AirDate >= filter.StartDate);
+                }
+
+                if (filter?.EndDate != null)
+                {
+                    query = query.Where(episode => episode.AirDate <= filter.EndDate);
+                }
+
                 return await query.ToListAsync();
             }
             catch (Exception e)

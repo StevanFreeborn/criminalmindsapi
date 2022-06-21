@@ -20,7 +20,7 @@ namespace server.Controllers.v1
         [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Season>), 200)]
-        [ProducesResponseType(500)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<ActionResult<List<Season>>> GetSeasonsAsync()
         {
             try
@@ -31,29 +31,30 @@ namespace server.Controllers.v1
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get seasons");
+                return Problem(detail: "Failed to get season", statusCode: 500);
             }
         }
 
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
         [ProducesResponseType(typeof(Season), 200)]
-        [ProducesResponseType(typeof(ErrorResponse), 404)]
-        [ProducesResponseType(500)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
+        [ProducesResponseType(typeof(ProblemDetails), 404)]
+        [ProducesResponseType(typeof(ProblemDetails),500)]
         public async Task<ActionResult<Season>> GetSeasonByNumberAsync(int number)
         {
             try
             {
                 var season = await _seasonRepository.GetSeasonByNumberAsync(number);
 
-                if (season == null) return NotFound(new ErrorResponse($"Could not find season number {number}"));
+                if (season == null) return Problem(detail: $"Could not find season {number}", statusCode: 404);
 
                 return Ok(season);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get season");
+                return Problem(detail: "Failed to get season", statusCode: 500);
             }
         }
     }
