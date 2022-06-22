@@ -64,11 +64,11 @@ namespace server.Persistence.Seed
             const string fileName = "quotes.json";
             var quotesFilePath = Path.Combine(AppContext.BaseDirectory, $"Persistence/Seed/Data/{fileName}");
             var quotesJson = await File.ReadAllTextAsync(quotesFilePath);
-            var quotes = JsonSerializer.Deserialize<List<Episode>>(quotesJson);
+            var quotes = JsonSerializer.Deserialize<List<Quote>>(quotesJson);
 
             if (quotes != null)
             {
-                await _episodes.InsertManyAsync(quotes);
+                await _quotes.InsertManyAsync(quotes);
                 Console.WriteLine($"Seeded databases with quotes from {fileName}");
             }
 
