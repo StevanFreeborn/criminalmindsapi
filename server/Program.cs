@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using server.Filters;
 using server.Options;
 using server.Persistence;
@@ -78,7 +77,7 @@ app.UseSwaggerUI(options =>
     foreach (var description in provider.ApiVersionDescriptions)
     {
         var url = $"/swagger/{description.GroupName}/swagger.json";
-        var name = $"criminalmindsapi v{description.ApiVersion.ToString()}";
+        var name = $"criminalmindsapi v{description.ApiVersion}";
 
         options.SwaggerEndpoint(url, name);
     }

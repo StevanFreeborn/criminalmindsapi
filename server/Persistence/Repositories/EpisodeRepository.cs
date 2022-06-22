@@ -1,7 +1,6 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using server.Models;
-using System.Linq;
 
 namespace server.Persistence.Repositories
 {

@@ -1,7 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Json;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using server.Models;
+using System.Text.Json;
 
 namespace server.Persistence.Seed
 {
