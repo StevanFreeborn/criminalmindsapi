@@ -56,6 +56,8 @@ builder.Services.AddScoped<ISeasonRepository, SeasonRepository>();
 
 builder.Services.AddScoped<IEpisodeRepository, EpisodeRepository>();
 
+builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
