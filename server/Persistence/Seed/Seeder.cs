@@ -6,24 +6,23 @@ namespace server.Persistence.Seed
 {
     public class Seeder
     {
-        private readonly IMongoClient _client;
-        private readonly IMongoDatabase _database;
-        private readonly IConfiguration _config;
         private readonly IMongoCollection<Season> _seasons;
         private readonly IMongoCollection<Episode> _episodes;
         private readonly IMongoCollection<Quote> _quotes;
 
         public Seeder()
         {
-            _config = new ConfigurationBuilder()
+            IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            _client = new MongoClient(_config.GetSection("MongoDBSettings:ConnectionString").Value);
-            _database = _client.GetDatabase(_config.GetSection("MongoDBSettings:DatabaseName").Value);
-            _seasons = _database.GetCollection<Season>(_config.GetSection("MongoDBSettings:SeasonsCollection").Value);
-            _episodes = _database.GetCollection<Episode>(_config.GetSection("MongoDBSettings:EpisodesCollection").Value);
-            _quotes = _database.GetCollection<Quote>(_config.GetSection("MongoDBSettings:QuotesCollection").Value);
+            IMongoClient client = new MongoClient(config.GetSection("MongoDBSettings:ConnectionString").Value);
+
+            IMongoDatabase database = client.GetDatabase(config.GetSection("MongoDBSettings:DatabaseName").Value);
+            
+            _seasons = database.GetCollection<Season>(config.GetSection("MongoDBSettings:SeasonsCollection").Value);
+            _episodes = database.GetCollection<Episode>(config.GetSection("MongoDBSettings:EpisodesCollection").Value);
+            _quotes = database.GetCollection<Quote>(config.GetSection("MongoDBSettings:QuotesCollection").Value);
         }
 
         public async Task SeedSeasonsAsync()
