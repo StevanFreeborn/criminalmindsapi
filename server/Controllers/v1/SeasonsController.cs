@@ -17,6 +17,12 @@ namespace server.Controllers.v1
             _seasonRepository = seasonRepository;
         }
 
+        /// <summary>
+        /// Gets a collection of seasons.
+        /// </summary>
+        /// <response code="200">Returns the collection of seasons requested.</response>
+        /// <response code="500">Failed to get seasons.</response>
+        /// <returns>Returns a collection of seasons.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Season>), StatusCodes.Status200OK)]
@@ -35,10 +41,16 @@ namespace server.Controllers.v1
             }
         }
 
+        /// <summary>
+        /// Gets a season by its number.
+        /// </summary>
+        /// <response code="200">Returns the season requested.</response>
+        /// <response code="404">Could not find a seaon with number provided.</response>
+        /// <response code="500">Failed to get season.</response>
+        /// <returns>Returns the season requested</returns>
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
         [ProducesResponseType(typeof(Season), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Season>> GetSeasonByNumberAsync(int number)
@@ -47,9 +59,9 @@ namespace server.Controllers.v1
             {
                 var season = await _seasonRepository.GetSeasonByNumberAsync(number);
 
-                if (season == null) return Problem(detail: $"Could not find season {number}", statusCode: 404);
-
-                return Ok(season);
+                return season == null ? 
+                    Problem(detail: $"Could not find season {number}", statusCode: 404) : 
+                    Ok(season);
             }
             catch (Exception e)
             {

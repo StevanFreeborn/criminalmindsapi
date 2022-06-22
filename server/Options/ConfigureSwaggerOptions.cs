@@ -24,7 +24,7 @@ namespace server.Options
             }
         }
 
-        private OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
+        private static OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
         {
             var info = new OpenApiInfo
             {

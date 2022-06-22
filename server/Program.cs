@@ -8,6 +8,7 @@ using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
 using System.Reflection;
+using AspNetCoreRateLimit;
 
 if (args.Length == 2 && args[0].ToLower() == "seed")
 {
@@ -22,9 +23,26 @@ if (args.Length == 2 && args[0].ToLower() == "seed")
     {
         await seeder.SeedEpisodesAsync();
     }
+
+    if (args[1].ToLower() == "quotes")
+    {
+        await seeder.SeedQuotesAsync();
+    }
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMemoryCache();
+
+builder.Services.Configure<IpRateLimitOptions>(
+    builder.Configuration.GetSection("IpRateLimiting"));
+
+builder.Services.Configure<IpRateLimitPolicies>(
+    builder.Configuration.GetSection("IpRateLimitPolicies"));
+
+builder.Services.AddInMemoryRateLimiting();
+
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("MongoDBSettings"));
@@ -68,18 +86,27 @@ builder.Services.AddVersionedApiExplorer(config =>
 
 var app = builder.Build();
 
-app.UseSwagger();
+app.UseStaticFiles();
+
+app.UseSwagger(options =>
+{
+    options.RouteTemplate = "docs/{documentName}/docs.json";
+});
 
 app.UseSwaggerUI(options =>
 {
     var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-    
+
     foreach (var description in provider.ApiVersionDescriptions)
     {
-        var url = $"/swagger/{description.GroupName}/swagger.json";
+        var url = $"/docs/{description.GroupName}/docs.json";
         var name = $"criminalmindsapi v{description.ApiVersion}";
 
+        options.RoutePrefix = "docs";
         options.SwaggerEndpoint(url, name);
+        options.EnableTryItOutByDefault();
+        options.DisplayRequestDuration();
+        options.DocumentTitle = "criminalmindsapi";
     }
 });
 
@@ -88,6 +115,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseIpRateLimiting();
 
 app.Run();
 

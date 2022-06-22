@@ -24,7 +24,7 @@ namespace server.Controllers.v1
         /// <response code="200">Returns the collection of episodes requested.</response>
         /// <response code="400">Not a valid request.</response>
         /// <response code="500">Failed to get episodes.</response>
-        /// <returns>A collection of episodes.</returns>
+        /// <returns>Returns a collection of episodes.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Episode>), StatusCodes.Status200OK)]
@@ -52,7 +52,7 @@ namespace server.Controllers.v1
         /// <response code="400">Not a valid request.</response>
         /// <response code="404">Unable to find an episode with the provided number.</response>
         /// <response code="500">Failed to get episode.</response>
-        /// <returns>The episode requested.</returns>
+        /// <returns>Returns the episode requested.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
         [ProducesResponseType(typeof(Episode), StatusCodes.Status200OK)]
@@ -65,9 +65,9 @@ namespace server.Controllers.v1
             {
                 var episode = await _episodeRepository.GetEpisodeByNumberAsync(number);
 
-                if (episode == null) return Problem(detail: $"Could not find episode {number}", statusCode: 404);
-
-                return Ok(episode);
+                return episode == null ? 
+                    Problem(detail: $"Could not find episode {number}", statusCode: 404) : 
+                    Ok(episode);
             }
             catch (Exception e)
             {
