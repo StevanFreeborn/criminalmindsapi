@@ -92,7 +92,7 @@ app.UseStaticFiles();
 
 app.UseSwagger(options =>
 {
-    options.RouteTemplate = "docs/{documentName}/docs.json";
+    options.RouteTemplate = "/{documentName}/docs.json";
 });
 
 app.UseSwaggerUI(options =>
@@ -101,10 +101,10 @@ app.UseSwaggerUI(options =>
 
     foreach (var description in provider.ApiVersionDescriptions)
     {
-        var url = $"/docs/{description.GroupName}/docs.json";
+        var url = $"/{description.GroupName}/docs.json";
         var name = $"criminalmindsapi v{description.ApiVersion}";
 
-        options.RoutePrefix = "docs";
+        options.RoutePrefix = String.Empty;
         options.SwaggerEndpoint(url, name);
         options.EnableTryItOutByDefault();
         options.DisplayRequestDuration();
