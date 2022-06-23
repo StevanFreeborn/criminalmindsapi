@@ -1,9 +1,5 @@
-﻿using server.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Driver;
+using server.Models;
 
 namespace server.Persistence.Repositories
 {
@@ -16,10 +12,19 @@ namespace server.Persistence.Repositories
             _context = context;
         }
 
-        // TODO: Implement GetQuotesAsync() method.
-        public Task<List<Quote>> GetQuotesAsync(QuoteFilter filter)
+        // TODO: Implement optional, but possible filters for query.
+        public async Task<List<Quote>> GetQuotesAsync(QuoteFilter filter)
         {
-            throw new NotImplementedException();
+            try 
+            {
+                var query = _context.Quotes.AsQueryable();
+                return await query.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         // TODO: Implement GetQuoteByIdAsync() method.

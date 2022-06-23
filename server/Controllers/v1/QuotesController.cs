@@ -44,10 +44,10 @@ namespace server.Controllers.v1
             }
         }
 
-        // TODO
+        // TODO: Implement getquotesbyid
         [MapToApiVersion("1.0")]
-        [HttpGet]
-        public async Task<ActionResult<Quote>> GetQuoteByIdAsync(int id)
+        [HttpGet("{id:int}")]
+        public Task<ActionResult<Quote>> GetQuoteByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
