@@ -36,7 +36,7 @@ namespace server.Persistence.Repositories
 
                 if (filter?.Title != null)
                 {
-                    query = query.Where(episode => episode.Title!.ToLower() == filter.Title.ToLower());
+                    query = query.Where(episode => episode.Title!.ToLower().Contains(filter.Title.ToLower()));
                 }
 
                 if (filter?.SummaryKeyword != null)

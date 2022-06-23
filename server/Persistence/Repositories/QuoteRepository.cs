@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using server.Models;
 
 namespace server.Persistence.Repositories
@@ -18,6 +19,12 @@ namespace server.Persistence.Repositories
             try 
             {
                 var query = _context.Quotes.AsQueryable();
+
+                if (filter?.Narrator != null)
+                {
+                    query = query.Where(quote => quote.Narrator!.ToLower().Contains(filter.Narrator.ToLower()));
+                }
+
                 return await query.ToListAsync();
             }
             catch (Exception e)
