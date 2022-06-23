@@ -40,7 +40,7 @@ namespace server.Controllers.v1
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Problem(detail: "Failed to get episode", statusCode: 500);
+                return Problem(detail: "Failed to get episodes", statusCode: 500);
             }
         }
 

@@ -37,7 +37,7 @@ namespace server.Controllers.v1
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Problem(detail: "Failed to get season", statusCode: 500);
+                return Problem(detail: "Failed to get seasons", statusCode: 500);
             }
         }
 

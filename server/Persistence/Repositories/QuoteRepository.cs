@@ -13,12 +13,31 @@ namespace server.Persistence.Repositories
             _context = context;
         }
 
-        // TODO: Implement optional, but possible filters for query.
         public async Task<List<Quote>> GetQuotesAsync(QuoteFilter filter)
         {
             try 
             {
                 var query = _context.Quotes.AsQueryable();
+
+                if (filter?.Season != null)
+                {
+                    query = query.Where(quote => quote.Season == filter.Season);
+                }
+
+                if (filter?.Episode != null)
+                {
+                    query = query.Where(quote => quote.Episode == filter.Episode);
+                }
+
+                if (filter?.TextKeyword != null)
+                {
+                    query = query.Where(quote => quote.Text!.ToLower().Contains(filter.TextKeyword.ToLower()));
+                }
+
+                if (filter?.Source != null)
+                {
+                    query = query.Where(quote => quote.Source!.ToLower().Contains(filter.Source.ToLower()));
+                }
 
                 if (filter?.Narrator != null)
                 {
@@ -34,10 +53,17 @@ namespace server.Persistence.Repositories
             }
         }
 
-        // TODO: Implement GetQuoteByIdAsync() method.
-        public Task<Quote> GetQuoteByIdAsync(int id)
+        public async Task<Quote> GetQuoteByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _context.Quotes.Find(quote => quote.Id == id).SingleOrDefaultAsync();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
     }

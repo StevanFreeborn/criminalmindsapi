@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using MongoDB.Bson;
 using server.Models;
 using server.Persistence.Repositories;
 
@@ -40,16 +42,39 @@ namespace server.Controllers.v1
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Problem(detail: "Failed to get quote", statusCode: 500);
+                return Problem(detail: "Failed to get quotes", statusCode: 500);
             }
         }
 
-        // TODO: Implement getquotesbyid
+        // TODO: Add comments
         [MapToApiVersion("1.0")]
-        [HttpGet("{id:int}")]
-        public Task<ActionResult<Quote>> GetQuoteByIdAsync(int id)
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<Quote>> GetQuoteByIdAsync(string id)
         {
-            throw new NotImplementedException();
+
+            if (!ObjectId.TryParse(id, out _))
+            {
+                ModelState.AddModelError(nameof(id), $"{id} is not a valid id");
+                return ValidationProblem();
+            }
+
+            try
+            {
+                var quote = await _quoteRepository.GetQuoteByIdAsync(id);
+
+                return quote == null ?
+                    Problem(detail: $"Could not find quote {id}", statusCode: 404) :
+                    Ok(quote);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Problem(detail: "Failed to get quote", statusCode: 500);
+            }
         }
     }
 }
