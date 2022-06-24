@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using server.Models;
 
 namespace server.Persistence.Repositories
 {
     public interface ICharacterRepository
     {
-
+        Task<List<Character>> GetCharactersAsync(CharacterFilter filter);
+        Task<Character> GetCharacterByIdAsync(string id);
     }
 }

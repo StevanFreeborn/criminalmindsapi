@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
-using server.Filters;
 using server.Options;
 using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
 using System.Reflection;
 using AspNetCoreRateLimit;
+using server.Options.Filters;
 
 if (args.Length == 2 && args[0].ToLower() == "seed")
 {
