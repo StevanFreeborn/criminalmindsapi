@@ -63,6 +63,8 @@ builder.Services.AddScoped<IEpisodeRepository, EpisodeRepository>();
 
 builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
 
+builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

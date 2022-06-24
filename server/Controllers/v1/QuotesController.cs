@@ -46,7 +46,15 @@ namespace server.Controllers.v1
             }
         }
 
-        // TODO: Add xml comments
+        /// <summary>
+        /// Gets a quote by its id.
+        /// </summary>
+        /// <param name="id">The id of the quote being requested.</param>
+        /// <response code="200">Returns the quote requested.</response>
+        /// <response code="400">Not a valid request.</response>
+        /// <response code="404">Quote with the given id not found.</response>
+        /// <response code="500">Failed to get quote.</response>
+        /// <returns>Returns a quote.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
