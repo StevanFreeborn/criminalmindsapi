@@ -1,0 +1,351 @@
+[
+  {
+    "FirstName": "Jason",
+    "LastName": "Gideon",
+    "ActorFirstName": "Mandy",
+    "ActorLastName": "Patinkin",
+    "Seasons": [
+      1,
+      2,
+      3,
+      10,
+      15
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "In Name and Blood",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jason-gideon.png"
+  },
+  {
+    "FirstName": "Derek",
+    "LastName": "Morgan",
+    "ActorFirstName": "Shemar",
+    "ActorLastName": "Moore",
+    "Seasons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "A Beautiful Disaster",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/derek-morgan.png"
+  },
+  {
+    "FirstName": "Aaron",
+    "LastName": "Hotchner",
+    "ActorFirstName": "Thomas",
+    "ActorLastName": "Gibson",
+    "Seasons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "Sick Day",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/aaron-hotchner.png"
+  },
+  {
+    "FirstName": "Spencer",
+    "LastName": "Reid",
+    "ActorFirstName": "Matthew",
+    "ActorLastName": "Gubler",
+    "Seasons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/spencer-reid.png"
+  },
+  {
+    "FirstName": "Max",
+    "LastName": "Ryan",
+    "ActorFirstName": "Geoff",
+    "ActorLastName": "Pierson",
+    "Seasons": [
+      1
+    ],
+    "FirstEpisode": "Unfinished Business",
+    "LastEpisode": "Unfinished Business",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/max-ryan.png"
+  },
+  {
+    "FirstName": "Elle",
+    "LastName": "Greenaway",
+    "ActorFirstName": "Lola",
+    "ActorLastName": "Glaudini",
+    "Seasons": [
+      1,
+      2
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "The Boogeyman",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/elle-greenaway.png"
+  },
+  {
+    "FirstName": "Jennifer",
+    "LastName": "Jareau",
+    "ActorFirstName": "A.J.",
+    "ActorLastName": "Cook",
+    "Seasons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "Complusion",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jennifer-jareau.png"
+  },
+  {
+    "FirstName": "Emily",
+    "LastName": "Prentiss",
+    "ActorFirstName": "Paget",
+    "ActorLastName": "Brewster",
+    "Seasons": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "The Last Word",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/emily-prentiss.png"
+  },
+  {
+    "FirstName": "David",
+    "LastName": "Rossi",
+    "ActorFirstName": "Joe",
+    "ActorLastName": "Mantegna",
+    "Seasons": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "About Face",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/david-rossi.png"
+  },
+  {
+    "FirstName": "Penelope",
+    "LastName": "Garcia",
+    "ActorFirstName": "Kirsten",
+    "ActorLastName": "Vangsness",
+    "Seasons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "Extreme Aggressor",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/penelope-garcia.png"
+  },
+  {
+    "FirstName": "Ian",
+    "LastName": "Doyle",
+    "ActorFirstName": "Timothy",
+    "ActorLastName": "Murphy",
+    "Seasons": [
+      6,
+      7
+    ],
+    "FirstEpisode": "The Thirteenth Step",
+    "LastEpisode": "It Takes a Village",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ian-doyle.png"
+  },
+  {
+    "FirstName": "Ashley",
+    "LastName": "Seaver",
+    "ActorFirstName": "Rachel",
+    "ActorLastName": "Nichols",
+    "Seasons": [
+      6
+    ],
+    "FirstEpisode": "What Happens at Home",
+    "LastEpisode": "Supply & Demand",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ashley-seaver.png"
+  },
+  {
+    "FirstName": "Alex",
+    "LastName": "Blake",
+    "ActorFirstName": "Jeanne",
+    "ActorLastName": "Tripplehorn",
+    "Seasons": [
+      8,
+      9
+    ],
+    "FirstEpisode": "The Silencer",
+    "LastEpisode": "Demons",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/alex-blake.png"
+  },
+  {
+    "FirstName": "Kate",
+    "LastName": "Callahan",
+    "ActorFirstName": "Jennifer",
+    "ActorLastName": "Hewitt",
+    "Seasons": [
+      10
+    ],
+    "FirstEpisode": "X",
+    "LastEpisode": "The Hunt",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/kate-callahan.png"
+  },
+  {
+    "FirstName": "Jack",
+    "LastName": "Garrett",
+    "ActorFirstName": "Gary",
+    "ActorLastName": "Sinise",
+    "Seasons": [
+      10
+    ],
+    "FirstEpisode": "Beyond Borders",
+    "LastEpisode": "Beyond Borders",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jack-garrett.png"
+  },
+  {
+    "FirstName": "Tara",
+    "LastName": "Lewis",
+    "ActorFirstName": "Aisha",
+    "ActorLastName": "Tyler",
+    "Seasons": [
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "The Job",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/tara-lewis.png"
+  },
+  {
+    "FirstName": "Luke",
+    "LastName": "Alvez",
+    "ActorFirstName": "Adam",
+    "ActorLastName": "Rodriguez",
+    "Seasons": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "The Crimson King",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/luke-alvez.png"
+  },
+  {
+    "FirstName": "Stephen",
+    "LastName": "Walker",
+    "ActorFirstName": "Damon",
+    "ActorLastName": "Gupton",
+    "Seasons": [
+      12,
+      13
+    ],
+    "FirstEpisode": "Scarecrow",
+    "LastEpisode": "Wheels Up",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/stephen-walker.png"
+  },
+  {
+    "FirstName": "Matthew",
+    "LastName": "Simmons",
+    "ActorFirstName": "Daniel",
+    "ActorLastName": "Henney",
+    "Seasons": [
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "Beyond Borders",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/matthew-simmons.png"
+  },
+  {
+    "FirstName": "Krystall",
+    "LastName": "Richards",
+    "ActorFirstName": "Gail",
+    "ActorLastName": "O'Grady",
+    "Seasons": [
+      8,
+      13,
+      14,
+      15
+    ],
+    "FirstEpisode": "The Dance of Love",
+    "LastEpisode": "And in the End",
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/krystall-richards.png"
+  }
+]

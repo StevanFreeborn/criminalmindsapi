@@ -28,6 +28,11 @@ if (args.Length == 2 && args[0].ToLower() == "seed")
     {
         await seeder.SeedQuotesAsync();
     }
+
+    if (args[1].ToLower() == "characters")
+    {
+        await seeder.SeedCharactersAsync();
+    }
 }
 
 var builder = WebApplication.CreateBuilder(args);
