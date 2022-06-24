@@ -13,6 +13,12 @@ namespace server.Models
         public string? Id { get; set; }
 
         /// <summary>
+        /// The character's full name.
+        /// </summary>
+        [BsonElement("fullName")]
+        public string FullName => $"{FirstName} {LastName}";
+
+        /// <summary>
         /// The character's first name.
         /// </summary>
         [BsonElement("firstName")]
@@ -23,6 +29,12 @@ namespace server.Models
         /// </summary>
         [BsonElement("lastName")]
         public string? LastName { get; set; }
+
+        /// <summary>
+        /// The full name of the actor who potrayed the character.
+        /// </summary>
+        [BsonElement("actorFullName")]
+        public string ActorFullName => $"{ActorFirstName} {ActorLastName}";
 
         /// <summary>
         /// The first name of the actor who potrayed the character.

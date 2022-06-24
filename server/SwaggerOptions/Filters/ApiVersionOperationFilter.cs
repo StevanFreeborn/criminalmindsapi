@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace server.Options.Filters
+namespace server.SwaggerOptions.Filters
 {
     public class ApiVersionOperationFilter : IOperationFilter
     {

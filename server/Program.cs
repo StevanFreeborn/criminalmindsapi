@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
-using server.Options;
+using server.SwaggerOptions;
 using server.Persistence;
 using server.Persistence.Repositories;
 using server.Persistence.Seed;
 using System.Reflection;
 using AspNetCoreRateLimit;
-using server.Options.Filters;
+using server.SwaggerOptions.Filters;
 
 if (args.Length == 2 && args[0].ToLower() == "seed")
 {
@@ -34,99 +34,102 @@ if (args.Length == 2 && args[0].ToLower() == "seed")
         await seeder.SeedCharactersAsync();
     }
 }
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddMemoryCache();
-
-builder.Services.Configure<IpRateLimitOptions>(
-    builder.Configuration.GetSection("IpRateLimiting"));
-
-builder.Services.Configure<IpRateLimitPolicies>(
-    builder.Configuration.GetSection("IpRateLimitPolicies"));
-
-builder.Services.AddInMemoryRateLimiting();
-
-builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-
-builder.Services.Configure<DatabaseSettings>(
-    builder.Configuration.GetSection("MongoDBSettings"));
-
-builder.Services.AddSingleton<IDatabaseSettings>(sp => 
-    sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-
-builder.Services.AddSingleton<IDbContext, DbContext>();
-
-builder.Services.AddScoped<ISeasonRepository, SeasonRepository>();
-
-builder.Services.AddScoped<IEpisodeRepository, EpisodeRepository>();
-
-builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
-
-builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
-
-builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(options =>
+else
 {
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-    options.IncludeXmlComments(xmlPath);
-    options.OperationFilter<ApiVersionOperationFilter>();
-});
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+    builder.Services.AddMemoryCache();
 
-builder.Services.AddApiVersioning(config =>
-{
-    config.DefaultApiVersion = new ApiVersion(1, 0);
-    config.AssumeDefaultVersionWhenUnspecified = true;
-    config.ReportApiVersions = true;
-    config.ApiVersionReader = new HeaderApiVersionReader("x-api-version");
-});
+    builder.Services.Configure<IpRateLimitOptions>(
+        builder.Configuration.GetSection("IpRateLimiting"));
 
-builder.Services.AddVersionedApiExplorer(config =>
-{
-    config.GroupNameFormat = "'v'VVV";
-});
+    builder.Services.Configure<IpRateLimitPolicies>(
+        builder.Configuration.GetSection("IpRateLimitPolicies"));
 
-var app = builder.Build();
+    builder.Services.AddInMemoryRateLimiting();
 
-app.UseStaticFiles();
+    builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
-app.UseSwagger(options =>
-{
-    options.RouteTemplate = "/{documentName}/docs.json";
-});
+    builder.Services.Configure<DatabaseSettings>(
+        builder.Configuration.GetSection("MongoDBSettings"));
 
-app.UseSwaggerUI(options =>
-{
-    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+    builder.Services.AddSingleton<IDatabaseSettings>(sp =>
+        sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-    foreach (var description in provider.ApiVersionDescriptions)
+    builder.Services.AddSingleton<IDbContext, DbContext>();
+
+    builder.Services.AddScoped<ISeasonRepository, SeasonRepository>();
+
+    builder.Services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+
+    builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
+
+    builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+
+    builder.Services.AddControllers();
+
+    builder.Services.AddEndpointsApiExplorer();
+
+    builder.Services.AddSwaggerGen(options =>
     {
-        var url = $"/{description.GroupName}/docs.json";
-        var name = $"criminalmindsapi v{description.ApiVersion}";
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-        options.RoutePrefix = String.Empty;
-        options.SwaggerEndpoint(url, name);
-        options.EnableTryItOutByDefault();
-        options.DisplayRequestDuration();
-        options.DocumentTitle = "criminalmindsapi";
-    }
-});
+        options.IncludeXmlComments(xmlPath);
+        options.OperationFilter<ApiVersionOperationFilter>();
+    });
 
-app.UseHttpsRedirection();
+    builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-app.UseAuthorization();
+    builder.Services.AddApiVersioning(config =>
+    {
+        config.DefaultApiVersion = new ApiVersion(1, 0);
+        config.AssumeDefaultVersionWhenUnspecified = true;
+        config.ReportApiVersions = true;
+        config.ApiVersionReader = new HeaderApiVersionReader("x-api-version");
+    });
 
-app.MapControllers();
+    builder.Services.AddVersionedApiExplorer(config =>
+    {
+        config.GroupNameFormat = "'v'VVV";
+    });
 
-app.UseIpRateLimiting();
+    var app = builder.Build();
 
-app.Run();
+    app.UseStaticFiles();
+
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/{documentName}/docs.json";
+    });
+
+    app.UseSwaggerUI(options =>
+    {
+        var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+        foreach (var description in provider.ApiVersionDescriptions)
+        {
+            var url = $"/{description.GroupName}/docs.json";
+            var name = $"criminalmindsapi v{description.ApiVersion}";
+
+            options.RoutePrefix = String.Empty;
+            options.SwaggerEndpoint(url, name);
+            options.EnableTryItOutByDefault();
+            options.DisplayRequestDuration();
+            options.DocumentTitle = "criminalmindsapi";
+        }
+    });
+
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.UseIpRateLimiting();
+
+    app.Run();
+}
 
 

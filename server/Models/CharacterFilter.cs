@@ -8,6 +8,19 @@ namespace server.Models
 {
     public class CharacterFilter
     {
-        // TODO: Build character filter model
+        /// <summary>
+        /// Used to filter characters by their name.
+        /// </summary>
+        public string? Name { get; set; } = null;
+
+        /// <summary>
+        /// Used to filter characters by the actor's name.
+        /// </summary>
+        public string? ActorName { get; set; } = null;
+
+        /// <summary>
+        /// Used to filter characters by a season.
+        /// </summary>
+        public int? Season { get; set; } = null;
     }
 }
