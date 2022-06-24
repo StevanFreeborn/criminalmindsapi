@@ -27,17 +27,14 @@ if (args.Length == 2 && args[0].ToLower() == "seed")
 }
 else
 {
-    var builder = WebApplication.CreateBuilder(args);
+    var app = WebApplication
+        .CreateBuilder(args)
+        .SetupDb()
+        .SetupMvC()
+        .SetupSwagger()
+        .Build();
 
-    Services.SetupDb(builder);
-    Services.SetupMvC(builder);
-    Services.SetupSwagger(builder);
-
-    var app = builder.Build();
-
-    Middleware.Setup(app);
-
-    app.Run();
+    app.SetupMiddleware().Run();
 }
 
 

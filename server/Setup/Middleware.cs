@@ -5,7 +5,7 @@ namespace server.Setup
 {
     public static class Middleware
     {
-        public static void Setup(WebApplication app)
+        public static WebApplication SetupMiddleware(this WebApplication app)
         {
             app.UseSwagger(options =>
             {
@@ -36,6 +36,8 @@ namespace server.Setup
             app.MapControllers();
 
             app.UseIpRateLimiting();
+
+            return app;
         }
     }
 }

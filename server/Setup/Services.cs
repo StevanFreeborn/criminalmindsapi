@@ -12,7 +12,7 @@ namespace server.Setup
 {
     public static class Services
     {
-        public static void SetupDb(WebApplicationBuilder builder)
+        public static WebApplicationBuilder SetupDb(this WebApplicationBuilder builder)
         {
             builder.Services.Configure<DatabaseSettings>(
             builder.Configuration.GetSection("MongoDBSettings"));
@@ -29,9 +29,11 @@ namespace server.Setup
             builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
 
             builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+
+            return builder;
         }
 
-        public static void SetupMvC(WebApplicationBuilder builder)
+        public static WebApplicationBuilder SetupMvC(this WebApplicationBuilder builder)
         {
             builder.Services.AddMemoryCache();
 
@@ -61,9 +63,11 @@ namespace server.Setup
             {
                 config.GroupNameFormat = "'v'VVV";
             });
+
+            return builder;
         }
 
-        public static void SetupSwagger(WebApplicationBuilder builder)
+        public static WebApplicationBuilder SetupSwagger(this WebApplicationBuilder builder)
         {
             builder.Services.AddSwaggerGen(options =>
             {
@@ -75,6 +79,8 @@ namespace server.Setup
             });
 
             builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+            return builder;
         }
     }
 }
