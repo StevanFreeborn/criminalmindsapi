@@ -46,7 +46,7 @@ namespace server.Controllers.v1
             }
         }
 
-        // TODO: Add comments
+        // TODO: Add xml comments
         [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
