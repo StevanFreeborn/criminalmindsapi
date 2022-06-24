@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "criminalminds-server",
+      "defaultValue": "criminalmindsapi",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

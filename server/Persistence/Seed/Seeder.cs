@@ -9,6 +9,7 @@ namespace server.Persistence.Seed
         private readonly IMongoCollection<Season> _seasons;
         private readonly IMongoCollection<Episode> _episodes;
         private readonly IMongoCollection<Quote> _quotes;
+        private readonly IMongoCollection<Character> _characters;
 
         public Seeder()
         {
@@ -23,6 +24,7 @@ namespace server.Persistence.Seed
             _seasons = database.GetCollection<Season>(config.GetSection("MongoDBSettings:SeasonsCollection").Value);
             _episodes = database.GetCollection<Episode>(config.GetSection("MongoDBSettings:EpisodesCollection").Value);
             _quotes = database.GetCollection<Quote>(config.GetSection("MongoDBSettings:QuotesCollection").Value);
+            _characters = database.GetCollection<Character>(config.GetSection("MongoDBSettings:CharactersCollection").Value);
         }
 
         public async Task SeedSeasonsAsync()
@@ -37,7 +39,7 @@ namespace server.Persistence.Seed
             if(seasons != null)
             {
                 await _seasons.InsertManyAsync(seasons);
-                Console.WriteLine($"Seeded databases with seasons from {fileName}");
+                Console.WriteLine($"Seeded databases with {nameof(seasons)} from {fileName}");
             }
         }
 
@@ -53,13 +55,13 @@ namespace server.Persistence.Seed
             if (episodes != null)
             {
                 await _episodes.InsertManyAsync(episodes);
-                Console.WriteLine($"Seeded databases with episodes from {fileName}");
+                Console.WriteLine($"Seeded databases with {nameof(episodes)} from {fileName}");
             }
         }
 
         public async Task SeedQuotesAsync()
         {
-            await _quotes.DeleteManyAsync(quotes => true);
+            await _quotes.DeleteManyAsync(quote => true);
 
             const string fileName = "quotes.json";
             var quotesFilePath = Path.Combine(AppContext.BaseDirectory, $"Persistence/Seed/Data/{fileName}");
@@ -69,7 +71,24 @@ namespace server.Persistence.Seed
             if (quotes != null)
             {
                 await _quotes.InsertManyAsync(quotes);
-                Console.WriteLine($"Seeded databases with quotes from {fileName}");
+                Console.WriteLine($"Seeded databases with {nameof(quotes)} from {fileName}");
+            }
+
+        }
+
+        public async Task SeedCharactersAsync()
+        {
+            await _characters.DeleteManyAsync(character => true);
+
+            const string fileName = "characters.json";
+            var charactersFilePath = Path.Combine(AppContext.BaseDirectory, $"Persistence/Seed/Data/{fileName}");
+            var charactersJson = await File.ReadAllTextAsync(charactersFilePath);
+            var characters = JsonSerializer.Deserialize<List<Character>>(charactersJson);
+
+            if (characters != null)
+            {
+                await _characters.InsertManyAsync(characters);
+                Console.WriteLine($"Seeded databases with {nameof(characters)} from {fileName}");
             }
 
         }

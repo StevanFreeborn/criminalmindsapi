@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d031910a-7ca1-44c2-9bb1-0bdb42cd9f43/microsoft.web/sites/subscriptions/d031910a-7ca1-44c2-9bb1-0bdb42cd9f43/resourceGroups/StevanFreeborn/providers/Microsoft.Web/sites/criminalmindsapi",
+    "appService.deploySubpath": "server"
+}

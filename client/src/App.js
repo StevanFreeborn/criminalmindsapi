@@ -55,7 +55,7 @@ export default class App extends Component {
         let url = '/api/seasons';
 
         if (process.env.NODE_ENV === 'production') {
-            url = 'https://criminalminds-server.azurewebsites.net' + url;
+            url = 'https://criminalmindsapi.azurewebsites.net' + url;
         }
 
         const response = await fetch(url);
