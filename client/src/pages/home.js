@@ -41,8 +41,6 @@ export default function Home() {
 
     }
 
-    characters = characters;
-
     return (
         <>
             {characters.length > 0 ?
