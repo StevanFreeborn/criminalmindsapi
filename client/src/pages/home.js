@@ -41,12 +41,18 @@ export default function Home() {
 
     }
 
+    characters = characters;
+
     return (
         <>
-            <Greeting/>
-            <CardHolder>
-                {getCharacterCards()}
-            </CardHolder>
+            {characters.length > 0 ?
+                <>
+                    <Greeting />
+                    <CardHolder>
+                        {getCharacterCards()}
+                    </CardHolder>
+                </>
+            : null}
         </>
     );
 }
