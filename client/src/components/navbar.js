@@ -12,13 +12,11 @@ export default function NavBar() {
             variant="light"
         >
             <Container fluid>
-                <Navbar.Brand>
-                    <NavLink
-                        to='/'
-                        className="nav-link link-dark ps-0"
-                    >
-                        criminalmindsapi
-                    </NavLink>
+                <Navbar.Brand
+                    href="/"
+                    className="pt-0"
+                >
+                    criminalmindsapi
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse>
