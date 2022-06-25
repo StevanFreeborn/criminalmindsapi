@@ -43,10 +43,14 @@ export default function Home() {
 
     return (
         <>
-            <Greeting/>
-            <CardHolder>
-                {getCharacterCards()}
-            </CardHolder>
+            {characters.length > 0 ?
+                <>
+                    <Greeting />
+                    <CardHolder>
+                        {getCharacterCards()}
+                    </CardHolder>
+                </>
+            : null}
         </>
     );
 }
