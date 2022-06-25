@@ -1,6 +1,6 @@
 const baseUrl = process.env.NODE_ENV === 'development' ?
     '' :
-    'http://criminalmindsapi.azurewebsites.net';
+    'https://criminalmindsapi.azurewebsites.net';
 
 const versionHeader = 'x-api-version';
 const versionHeaderValue = 1;
