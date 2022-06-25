@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom';
@@ -8,36 +8,53 @@ export default function NavBar() {
 
     return (
         <Navbar
-            expand="sm" 
-            variant="light"
+            expand='sm'
+            variant='light'
         >
             <Container fluid>
+
                 <Navbar.Brand
-                    href="/"
-                    className="pt-0"
+                    href='/'
+                    className='pt-0'
                 >
-                    criminalmindsapi
+                    <span className='highlight'>criminal</span>mindsapi
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+
+                <Navbar.Toggle aria-controls='basic-navbar-nav'/>
+                
                 <Navbar.Collapse>
-                    <Nav>
+
+                    <Nav className='ms-auto'>
+
+                        <NavLink
+                            to='/'
+                            className='nav-link link-dark'
+                        >
+                            Home
+                        </NavLink>
+
                         <NavLink
                             to='/About'
-                            className="nav-link link-dark"
+                            className='nav-link link-dark'
                         >
                             About
                         </NavLink>
+
                         <a
-                            href="https://criminalmindsapi.azurewebsites.net"
+                            href='https://criminalmindsapi.azurewebsites.net'
                             rel='noreferrer'
                             target='_blank'
-                            className="nav-link link-dark"
+                            className='nav-link link-dark'
                         >
                             Documentation
                         </a>
+
                     </Nav>
+
                 </Navbar.Collapse>
+
             </Container>
+            
         </Navbar>
     )
 

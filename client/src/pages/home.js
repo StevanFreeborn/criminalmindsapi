@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+
+import Greeting from '../components/greeting';
 
 export default function Home() {
     return (
         <>
-            <h1>Home</h1>
+            <Greeting/>
         </>
     );
 }

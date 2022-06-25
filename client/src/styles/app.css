@@ -1,0 +1,14 @@
+/* Bootstrap Overrides */
+
+.navbar-toggler:focus,
+.navbar-toggerl:active:focus {
+
+    box-shadow: none;
+
+}
+
+/* App Specific */
+
+.highlight {
+    color: #912718;
+}
