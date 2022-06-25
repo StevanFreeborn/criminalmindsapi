@@ -1,6 +1,12 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "description": "The frontend for the criminalmindsapi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StevanFreeborn/criminalmindsapi"
+  },
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -19,7 +25,7 @@
   },
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prestart": "node aspnetcore-https && node aspnetcore-react"
