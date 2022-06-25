@@ -1,7 +1,10 @@
 /* Bootstrap Overrides */
+.navbar-toggler {
+    border: none;
+}
 
 .navbar-toggler:focus,
-.navbar-toggerl:active:focus {
+.navbar-toggler:active:focus {
 
     box-shadow: none;
 

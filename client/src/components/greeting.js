@@ -8,13 +8,11 @@ export default function Greeting() {
     return (
         <Container>
 
-            <Row>
+            <Row className='py-5'>
 
                 <Col className='text-center'>
 
-                    <h1
-                        className='pt-5'
-                    >
+                    <h1>
                         The <span className='highlight'>Criminal</span> Minds API
                     </h1>
 
