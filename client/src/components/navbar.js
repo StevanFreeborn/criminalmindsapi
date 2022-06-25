@@ -11,13 +11,18 @@ export default function NavBar() {
             expand='sm'
             variant='light'
         >
-            <Container fluid>
+            <Container fluid className='mt-2'>
 
                 <Navbar.Brand
                     href='/'
-                    className='pt-0'
+                    className='p-0 my-auto'
                 >
-                    <span className='highlight'>criminal</span>mindsapi
+                    <img 
+                        src='/favicon.svg'
+                        alt='logo'
+                        width='60'
+                        height='100%'
+                    />
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls='basic-navbar-nav'/>
