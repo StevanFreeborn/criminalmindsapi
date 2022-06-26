@@ -71,5 +71,11 @@ namespace server.Models
         /// </summary>
         [BsonElement("image")]
         public string? Image { get; set; }
+
+        /// <summary>
+        /// A brief bio of the character.
+        /// </summary>
+        [BsonElement("bio")]
+        public string? Bio { get; set; }
     }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
+import Loading from '../components/loading';
 
 export default function About() {
     return (
-        <h1>About</h1>
+        <p>Coming soon...</p>
     );
 }
