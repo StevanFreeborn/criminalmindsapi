@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Greeting from '../components/greeting';
 import CardHolder from '../components/cardHolder';
 import CharacterCard from '../components/characterCard';
+import Loading from '../components/loading';
 
 import CharacterService from '../services/characterService';
 const characterService = new CharacterService();
@@ -15,6 +16,8 @@ export default function Home() {
 
         const res = await characterService.getCharacters();
         
+        if (!res.ok) return;
+
         const characters = await res.json();
 
         return setCharacters(characters);
@@ -43,14 +46,12 @@ export default function Home() {
 
     return (
         <>
+            <Greeting />
             {characters.length > 0 ?
-                <>
-                    <Greeting />
-                    <CardHolder>
-                        {getCharacterCards()}
-                    </CardHolder>
-                </>
-            : null}
+                <CardHolder>
+                    {getCharacterCards()}
+                </CardHolder>
+                : <Loading />}
         </>
     );
 }

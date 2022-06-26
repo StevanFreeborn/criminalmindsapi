@@ -1,10 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
 
 export default function CharacterCard(props) {
     
-    const characterName = props.character.fullName;
     const image = new URL(props.character.image).pathname;
+    const characterName = props.character.fullName;
+    const firstEpisode = props.character.firstEpisode;
+    const lastEpisode = props.character.lastEpisode;
     
     return(
 
@@ -13,8 +16,18 @@ export default function CharacterCard(props) {
             <Card.Body>
                 <Card.Title>{characterName}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    <Table>
+                        <tbody>
+                            <tr>
+                                <td className='fw-bold'>First Episode:</td>
+                                <td>{firstEpisode}</td>
+                            </tr>
+                            <tr>
+                                <td className='fw-bold'>Last Episode:</td>
+                                <td>{lastEpisode}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
                 </Card.Text>
             </Card.Body>
         </Card>
