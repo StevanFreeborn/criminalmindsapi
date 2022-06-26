@@ -13,7 +13,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "In Name and Blood",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jason-gideon.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jason-gideon.png",
+    "Bio": "Jason Gideon was a criminal profiler, formerly the Senior Supervisory Special Agent of the FBI's Behavioral Analysis Unit. At the beginning of Season Three, Gideon abruptly retired from the BAU due to emotional issues brought on by the murder of his girlfriend. His position is now held by his former partner and best friend David Rossi, who has held it to this day. In the Season Ten episode \"Nelson's Sparrow\", he was murdered by Donnie Mallick."
   },
   {
     "FirstName": "Derek",
@@ -38,7 +39,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "A Beautiful Disaster",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/derek-morgan.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/derek-morgan.png",
+    "Bio": "Derek Morgan is a former Supervisory Special Agent with the FBI's Behavioral Analysis Unit. For a time, he was the acting unit chief of the BAU, taking over as Hotch stepped down temporally. Morgan specialized in explosives, fixations, and obsessive behaviors. He officially resigned from the BAU in Season Eleven in order to be with his new family. His position was taken over by Luke Alvez in Season Twelve."
   },
   {
     "FirstName": "Aaron",
@@ -61,7 +63,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "Sick Day",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/aaron-hotchner.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/aaron-hotchner.png",
+    "Bio": "Aaron \"Hotch\" Hotchner is the former unit chief of Quantico's Behavioral Analysis Unit, the direct superior of all special agents, and the team's Media Liaison Officer since Jennifer Jareau's promotion to Supervisory Special Agent; the latter was a job that he shared with Penelope Garcia. He officially resigned from both positions in Season Twelve after being put into witness protection due to his son, Jack Hotchner being actively stalked by Peter Lewis, aka, Mr. Scratch."
   },
   {
     "FirstName": "Spencer",
@@ -87,7 +90,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/spencer-reid.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/spencer-reid.png",
+    "Bio": "Dr. Spencer \"Spence\" Reid is a Supervisory Special Agent with the BAU. He is hailed as a genius and an autodidact."
   },
   {
     "FirstName": "Max",
@@ -99,7 +103,8 @@
     ],
     "FirstEpisode": "Unfinished Business",
     "LastEpisode": "Unfinished Business",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/max-ryan.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/max-ryan.png",
+    "Bio": "Max Ryan is Gideon's former mentor who appeared in the Season One episode of Criminal Minds, \"Unfinished Business\"."
   },
   {
     "FirstName": "Elle",
@@ -112,7 +117,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "The Boogeyman",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/elle-greenaway.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/elle-greenaway.png",
+    "Bio": "Elle Greenaway is a former Supervisory Special Agent with the BAU. Her specialty was sexual offense crimes. She officially resigned from her position in Season Two due to PTSD from being shot by an unsub stalking the team, and due to murdering another unsub, making her a one-time vigilante killer. She was replaced by Emily Prentiss, who held the position until Season Seven."
   },
   {
     "FirstName": "Jennifer",
@@ -138,7 +144,8 @@
     ],
     "FirstEpisode": "Complusion",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jennifer-jareau.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jennifer-jareau.png",
+    "Bio": "Jennifer \"JJ\" Jareau is a Supervisory Special Agent who was the BAU's former liaison with police and media officials. Upon her return in Season Seven, she officially becomes a profiler while her original position has gone to Aaron Hotchner (until his departure from the BAU) and Penelope Garcia. For a time, she was the acting unit chief of the BAU, taking over as Emily Prentiss was placed on suspension, pending an investigation by Assistant Director Linda Barnes and was briefly terminated."
   },
   {
     "FirstName": "Emily",
@@ -161,7 +168,8 @@
     ],
     "FirstEpisode": "The Last Word",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/emily-prentiss.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/emily-prentiss.png",
+    "Bio": "Emily Prentiss is the current Unit Chief of the BAU who first joined the team two episodes after Elle Greenaway resigned from the FBI for good. At the end of Season Seven, she resigned from the BAU and accepted a position with Interpol in London. She was replaced by Alex Blake, who held the position until her own departure at the end of Season Nine. The position was then taken over by Kate Callahan for the duration of Season Ten before her own departure. She rejoined the team in Season Twelve and was then promoted to Unit Chief following the resignation of Aaron Hotchner. For a time, she was placed on administrative leave and suspension, pending an investigation by Assistant Director Linda Barnes; her position taken over by Jennifer Jareau temporarily."
   },
   {
     "FirstName": "David",
@@ -185,7 +193,8 @@
     ],
     "FirstEpisode": "About Face",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/david-rossi.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/david-rossi.png",
+    "Bio": "David Stephen \"Dave\" Rossi is a Supervisory Special Agent and the Unit Senior Agent at the Behavioral Analysis Unit at Quantico, Virginia."
   },
   {
     "FirstName": "Penelope",
@@ -211,7 +220,8 @@
     ],
     "FirstEpisode": "Extreme Aggressor",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/penelope-garcia.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/penelope-garcia.png",
+    "Bio": "Penelope Grace Garcia is the BAU's former Technical Analyst and also the team's Media Liaison Officer since Jennifer Jareau's promotion to Supervisory Special Agent; the latter is a job that she formerly shared with Aaron Hotchner before his departure from the BAU and shared the position with Emily Prentiss prior to her own departure in the show's series finale \"And in the End...\" in Season Fifteen."
   },
   {
     "FirstName": "Ian",
@@ -224,7 +234,8 @@
     ],
     "FirstEpisode": "The Thirteenth Step",
     "LastEpisode": "It Takes a Village",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ian-doyle.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ian-doyle.png",
+    "Bio": "Ian Doyle, a.k.a. \"Valhalla\", was a former IRA International terrorist, and later serial killer, proxy killer, one-time poisoner, and one-time abductor who appeared in Seasons Six and Seven of Criminal Minds."
   },
   {
     "FirstName": "Ashley",
@@ -236,7 +247,8 @@
     ],
     "FirstEpisode": "What Happens at Home",
     "LastEpisode": "Supply & Demand",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ashley-seaver.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/ashley-seaver.png",
+    "Bio": "Ashley Seaver (born Ashley Beauchamp) is an FBI agent who, after finishing her remedial training with the BAU while a cadet, was added to the team as a \"probationary agent\" by Erin Strauss after her graduation from the Academy. She later transferred out to Andi Swann's Domestic Trafficking Task Force between the end of Season Six and Seven."
   },
   {
     "FirstName": "Alex",
@@ -249,7 +261,8 @@
     ],
     "FirstEpisode": "The Silencer",
     "LastEpisode": "Demons",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/alex-blake.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/alex-blake.png",
+    "Bio": "Dr. Alex Blake (née Miller) is a seasoned FBI linguistics expert and professor at Georgetown who joined the BAU during the premiere episode of Season Eight after Emily Prentiss left the BAU for a post at Interpol. Blake officially resigned from the FBI at the end of Season Nine following a traumatizing incident. She was replaced by Kate Callahan at the premiere of Season Ten before her own departure at the end of said season. The position has since been occupied by Dr. Tara Lewis at the beginning of Season Eleven."
   },
   {
     "FirstName": "Kate",
@@ -261,7 +274,8 @@
     ],
     "FirstEpisode": "X",
     "LastEpisode": "The Hunt",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/kate-callahan.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/kate-callahan.png",
+    "Bio": "Katherine \"Kate\" Callahan is a seasoned FBI agent who joins the BAU during the premiere episode of Season Ten after Alex Blake left the BAU. She then left the team in the season finale due to her pregnancy. Her position was taken over by Dr. Tara Lewis in Season Eleven."
   },
   {
     "FirstName": "Jack",
@@ -273,7 +287,8 @@
     ],
     "FirstEpisode": "Beyond Borders",
     "LastEpisode": "Beyond Borders",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jack-garrett.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/jack-garrett.png",
+    "Bio": "Jack Garrett is the Unit Chief of the FBI's International Response Team (IRT), which appears in Criminal Minds: Beyond Borders. He and the rest of his team appear in the Season Ten episode of Criminal Minds, \"Beyond Borders\"."
   },
   {
     "FirstName": "Tara",
@@ -289,7 +304,8 @@
     ],
     "FirstEpisode": "The Job",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/tara-lewis.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/tara-lewis.png",
+    "Bio": "Dr. Tara Elizabeth Lewis is an FBI forensic psychologist and Supervisory Special Agent who first appears in Season Eleven of Criminal Minds as a recurring character. She joined the BAU following the departure of Kate Callahan at the end of Season Ten. She reappeared in Season Twelve as a main character."
   },
   {
     "FirstName": "Luke",
@@ -304,7 +320,8 @@
     ],
     "FirstEpisode": "The Crimson King",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/luke-alvez.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/luke-alvez.png",
+    "Bio": "Luke Alvez is a Supervisory Special Agent with the Federal Bureau of Investigation's Behavioral Analysis Unit, who joined the team at the start of Season Twelve following the resignation of Derek Morgan."
   },
   {
     "FirstName": "Stephen",
@@ -317,7 +334,8 @@
     ],
     "FirstEpisode": "Scarecrow",
     "LastEpisode": "Wheels Up",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/stephen-walker.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/stephen-walker.png",
+    "Bio": "Stephen Walker was a Supervisory Special Agent with the BAU, who joined the team in Season Twelve to assist in the manhunt for Peter Lewis, a.k.a. \"Mr. Scratch\". In Season Thirteen, Walker was murdered by Scratch in an elaborate attack on the team."
   },
   {
     "FirstName": "Matthew",
@@ -331,7 +349,8 @@
     ],
     "FirstEpisode": "Beyond Borders",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/matthew-simmons.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/matthew-simmons.png",
+    "Bio": "Matthew \"Matt\" Simmons is a Supervisory Special Agent with the Behavioral Analysis Unit. He was previously attached to the FBI's International Response Team (IRT), which was featured in Criminal Minds: Beyond Borders. He and the rest of the IRT were introduced in the Season Ten episode \"Beyond Borders\". He reappeared as a main character in Season Thirteen when he joins the BAU following the disbandment of the IRT."
   },
   {
     "FirstName": "Krystall",
@@ -346,6 +365,7 @@
     ],
     "FirstEpisode": "The Dance of Love",
     "LastEpisode": "And in the End",
-    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/krystall-richards.png"
+    "Image": "https://criminalmindsapi.stevanfreeborn.com/characters/krystall-richards.png",
+    "Bio": "Krystall Richards is a recurring character on Criminal Minds who remarried SSA David Rossi."
   }
 ]
