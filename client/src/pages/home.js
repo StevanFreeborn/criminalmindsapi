@@ -48,10 +48,15 @@ export default function Home() {
     return (
         <>
             <Greeting />
+
             {characters.length > 0 ?
+
                 <CardHolder>
+
                     {getCharacterCards()}
+
                 </CardHolder>
+                
                 : <Loading />}
         </>
     );

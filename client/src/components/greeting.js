@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function Greeting() {
-
     return (
         <Container>
 
@@ -34,5 +33,4 @@ export default function Greeting() {
             
         </Container>
     );
-
 }

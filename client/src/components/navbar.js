@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
 export default function NavBar() {
-
     return (
         <Navbar
             expand='sm'
@@ -62,5 +61,4 @@ export default function NavBar() {
             
         </Navbar>
     )
-
 }

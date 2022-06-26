@@ -13,7 +13,13 @@ export default function About() {
 
         return sections.map(section => {
 
-            return <AboutSection section={section}/>
+            return (
+
+                <AboutSection 
+                    section={section}
+                />
+
+            );
 
         });
 
@@ -27,7 +33,7 @@ export default function About() {
 
                 <Col>
 
-                    <h1 className='text-center py-4'>Wanna know more?</h1>
+                    <h1 className='text-center py-4'>Wheels up...</h1>
 
                 </Col>
 
