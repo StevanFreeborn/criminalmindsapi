@@ -10,27 +10,44 @@ export default function CharacterCard(props) {
     const lastEpisode = props.character.lastEpisode;
     
     return(
-
         <Card style={{ width: '22rem' }} className='p-1 m-3'>
+            
             <Card.Img variant='top' src={image} width='100%' />
+            
             <Card.Body>
+                
                 <Card.Title>{characterName}</Card.Title>
+                
                 <Card.Text>
+                    
                     <Table>
+                        
                         <tbody>
+                            
                             <tr>
+                                
                                 <td className='fw-bold'>First Episode:</td>
+                                
                                 <td>{firstEpisode}</td>
+                            
                             </tr>
+                            
                             <tr>
+                                
                                 <td className='fw-bold'>Last Episode:</td>
+                                
                                 <td>{lastEpisode}</td>
+                            
                             </tr>
+                        
                         </tbody>
+                    
                     </Table>
+                
                 </Card.Text>
+            
             </Card.Body>
+        
         </Card>
-
     );
 }

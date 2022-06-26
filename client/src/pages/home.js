@@ -16,6 +16,7 @@ export default function Home() {
 
         const res = await characterService.getCharacters();
         
+        // TODO: Handle a failed request.
         if (!res.ok) return;
 
         const characters = await res.json();
@@ -47,10 +48,15 @@ export default function Home() {
     return (
         <>
             <Greeting />
+
             {characters.length > 0 ?
+
                 <CardHolder>
+
                     {getCharacterCards()}
+
                 </CardHolder>
+                
                 : <Loading />}
         </>
     );
