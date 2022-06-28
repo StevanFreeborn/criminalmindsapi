@@ -15,3 +15,13 @@
 .highlight {
     color: #912718;
 }
+
+.btn-try-again,
+.btn-try-again:hover,
+.btn-try-again:focus,
+.btn-try-again:active:focus {
+    color: white;
+    background-color: #912718;
+    border-color: #912718;
+    box-shadow: none;
+}

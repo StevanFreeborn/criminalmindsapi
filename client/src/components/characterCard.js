@@ -17,34 +17,30 @@ export default function CharacterCard(props) {
             <Card.Body>
                 
                 <Card.Title>{characterName}</Card.Title>
-                
-                <Card.Text>
                     
-                    <Table>
-                        
-                        <tbody>
-                            
-                            <tr>
-                                
-                                <td className='fw-bold'>First Episode:</td>
-                                
-                                <td>{firstEpisode}</td>
-                            
-                            </tr>
-                            
-                            <tr>
-                                
-                                <td className='fw-bold'>Last Episode:</td>
-                                
-                                <td>{lastEpisode}</td>
-                            
-                            </tr>
-                        
-                        </tbody>
+                <Table>
                     
-                    </Table>
+                    <tbody>
+                        
+                        <tr>
+                            
+                            <td className='fw-bold'>First Episode:</td>
+                            
+                            <td>{firstEpisode}</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td className='fw-bold'>Last Episode:</td>
+                            
+                            <td>{lastEpisode}</td>
+                        
+                        </tr>
+                    
+                    </tbody>
                 
-                </Card.Text>
+                </Table>
             
             </Card.Body>
         
