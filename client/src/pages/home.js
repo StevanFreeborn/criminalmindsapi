@@ -75,7 +75,7 @@ export default function Home() {
 
                 <LoadingError
                     message={errorMessage}
-                    onClick={handleTryAgain}
+                    handleClick={handleTryAgain}
                 />
                 
                 : <Loading />}

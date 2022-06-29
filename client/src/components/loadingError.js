@@ -16,7 +16,7 @@ export default function LoadingError(props) {
 
                     <button
                         className='btn btn-cta'
-                        onClick={props.onClick}
+                        onClick={props.handleClick}
                     >
                         Try again
                     </button>
