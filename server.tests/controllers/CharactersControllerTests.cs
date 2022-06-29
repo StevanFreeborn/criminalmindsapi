@@ -19,7 +19,7 @@ namespace tests.controllers
         }
 
         [Fact]
-        public async Task GetCharactersAsync_NoFilterNoCharacters_Returns200StatusWithEmptyCollection()
+        public async Task GetCharactersAsync_NoFilterParamsNoCharacters_Returns200StatusWithEmptyCollection()
         {
             var filter = new CharacterFilter();
 
@@ -30,7 +30,7 @@ namespace tests.controllers
             var result = await _controller.GetCharactersAsync(filter) as ObjectResult;
             var data = result?.Value as List<Character>;
 
-            _mockRepo.Verify(c => c.GetCharactersAsync(filter), Times.Once());
+            _mockRepo.Verify(repo => repo.GetCharactersAsync(It.IsAny<CharacterFilter>()), Times.Once());
             Assert.IsType<OkObjectResult>(result);
             Assert.IsType<List<Character>>(data);
             Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)result.StatusCode);
