@@ -15,7 +15,7 @@ export default function LoadingError(props) {
                     <p>{props.message}</p>
 
                     <button
-                        className='btn btn-try-again'
+                        className='btn btn-cta'
                         onClick={props.onClick}
                     >
                         Try again
