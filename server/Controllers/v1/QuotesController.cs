@@ -32,7 +32,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(List<Quote>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<Quote>>> GetQuotesAsync([FromQuery] QuoteFilter? filter)
+        public async Task<IActionResult> GetQuotesAsync([FromQuery] QuoteFilter? filter)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Quote>> GetQuoteByIdAsync(string id)
+        public async Task<IActionResult> GetQuoteByIdAsync(string id)
         {
 
             if (!ObjectId.TryParse(id, out _))

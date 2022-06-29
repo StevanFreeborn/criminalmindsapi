@@ -30,7 +30,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(List<Episode>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<Episode>>> GetEpisodesAsync([FromQuery] EpisodeFilter? filter)
+        public async Task<IActionResult> GetEpisodesAsync([FromQuery] EpisodeFilter? filter)
         {            
             try
             {
@@ -59,7 +59,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Episode>> GetEpisodeByNumberAsync(int number)
+        public async Task<IActionResult> GetEpisodeByNumberAsync(int number)
         {
             try
             {
