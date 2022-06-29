@@ -4,6 +4,7 @@ import Greeting from '../components/greeting';
 import CardHolder from '../components/cardHolder';
 import CharacterCard from '../components/characterCard';
 import Loading from '../components/loading';
+import LoadingError from '../components/loadingError';
 
 import CharacterService from '../services/characterService';
 const characterService = new CharacterService();
@@ -11,13 +12,17 @@ const characterService = new CharacterService();
 export default function Home() {
 
     const [characters, setCharacters] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const getCharacters = async () => {
 
         const res = await characterService.getCharacters();
         
-        // TODO: Handle a failed request.
-        if (!res.ok) return;
+        if (!res.ok) {
+
+            return setErrorMessage('Failed to load characters.');
+
+        }
 
         const characters = await res.json();
 
@@ -26,7 +31,9 @@ export default function Home() {
     }
 
     useEffect(() => {
+
         getCharacters();
+
     }, []);
 
     const getCharacterCards = () => {
@@ -37,11 +44,18 @@ export default function Home() {
 
                 <CharacterCard 
                     character={character}
+                    key={character.id}
                 />
 
             );
 
         })
+
+    }
+
+    const handleTryAgain = async () => {
+
+        if (errorMessage === 'Failed to load characters.') return await getCharacters();
 
     }
 
@@ -56,6 +70,13 @@ export default function Home() {
                     {getCharacterCards()}
 
                 </CardHolder>
+                
+                : errorMessage ? 
+
+                <LoadingError
+                    message={errorMessage}
+                    handleClick={handleTryAgain}
+                />
                 
                 : <Loading />}
         </>

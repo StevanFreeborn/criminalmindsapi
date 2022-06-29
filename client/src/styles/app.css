@@ -15,3 +15,13 @@
 .highlight {
     color: #912718;
 }
+
+.btn-cta,
+.btn-cta:hover,
+.btn-cta:focus,
+.btn-cta:active:focus {
+    color: white;
+    background-color: #912718;
+    border-color: #912718;
+    box-shadow: none;
+}
