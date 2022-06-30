@@ -55,6 +55,8 @@ export default function Home() {
 
     const handleTryAgain = async () => {
 
+        setErrorMessage(null);
+
         if (errorMessage === 'Failed to load characters.') return await getCharacters();
 
     }
