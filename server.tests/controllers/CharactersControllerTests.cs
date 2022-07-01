@@ -3,6 +3,7 @@ using Moq;
 using server.Controllers.v1;
 using server.Models;
 using server.Persistence.Repositories;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace tests.controllers
@@ -73,6 +74,24 @@ namespace tests.controllers
             Assert.IsType<List<Character>>(data);
             Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)result.StatusCode);
             Assert.Single(data);  
+        }
+
+        [Fact]
+        public async Task GetCharactersAsync_RepoThrowsException_Returns500StatusWithProblemDetail()
+        {
+            var filter = new CharacterFilter();
+
+            _mockRepo
+                .Setup(repo => repo.GetCharactersAsync(filter))
+                .Throws(new Exception());
+
+            var result = await _controller.GetCharactersAsync(filter) as ObjectResult;
+            var data = result.Value;
+
+            _mockRepo.Verify(repo => repo.GetCharactersAsync(It.IsAny<CharacterFilter>()), Times.Once());
+            Assert.IsType<ObjectResult>(result);
+            Assert.IsType<ProblemDetails>(data);
+            Assert.Equal(HttpStatusCode.InternalServerError, (HttpStatusCode)result.StatusCode);
         }
     }
 }
