@@ -12,12 +12,14 @@ namespace server.tests.integrationTests
         {
             var webAppFactory = new WebApplicationFactory<Program>();
             _client = webAppFactory.CreateDefaultClient();
+            _client.DefaultRequestHeaders.Add("x-api-version", "1");
         }
 
         [Fact]
         public async Task GetCharacters_RetrievesAllCharacters_Returns200StatusCodeWithCharacters()
         {
             var response = await _client.GetAsync("/api/characters");
+
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
