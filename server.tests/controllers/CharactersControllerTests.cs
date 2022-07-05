@@ -3,8 +3,10 @@ using Moq;
 using server.Controllers.v1;
 using server.Models;
 using server.Persistence.Repositories;
-using System.ComponentModel.DataAnnotations;
+using server.tests.Mocks;
 using System.Net;
+using System.Text.Json;
+using Xunit.Abstractions;
 
 namespace tests.controllers
 {
@@ -12,11 +14,13 @@ namespace tests.controllers
     {
         private readonly Mock<ICharacterRepository> _mockRepo;
         private readonly CharactersController _controller;
+        private readonly ITestOutputHelper _output;
 
-        public CharactersControllerTests()
+        public CharactersControllerTests(ITestOutputHelper output)
         {
             _mockRepo = new Mock<ICharacterRepository>();
             _controller = new CharactersController(_mockRepo.Object);
+            _output = output;
         }
 
         [Fact]
@@ -67,9 +71,51 @@ namespace tests.controllers
                 .Throws(new Exception());
 
             var result = await _controller.GetCharactersAsync(filter) as ObjectResult;
-            var data = result.Value;
+            var data = result?.Value;
 
             _mockRepo.Verify(repo => repo.GetCharactersAsync(It.IsAny<CharacterFilter>()), Times.Once());
+            Assert.IsType<ObjectResult>(result);
+            Assert.IsType<ProblemDetails>(data);
+            Assert.Equal(HttpStatusCode.InternalServerError, (HttpStatusCode)result.StatusCode);
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_ValidCharacterId_Returns200StatusWithCharacter()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_InvalidCharacterId_Returns400StatusWithValidationProblemDetail()
+        {
+            var characterId = "1";
+
+            _controller.ProblemDetailsFactory = new MockProblemDetailsFactory();
+
+            var result = await _controller.GetCharacterByIdAsync(characterId) as ObjectResult;
+            var data = result?.Value;
+
+            string json = JsonSerializer.Serialize(result);
+
+            _output.WriteLine(json);
+
+            // Assert.IsType<ObjectResult>(result);
+            // Assert.IsType<ValidationProblemDetails>();
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_RepoThrowsException_Returns500StatusWithProblemDetail()
+        {
+            var characterId = "62b7d5506c1b407771829938";
+
+            _mockRepo
+                .Setup(repo => repo.GetCharacterByIdAsync(characterId))
+                .Throws(new Exception());
+
+            var result = await _controller.GetCharacterByIdAsync(characterId) as ObjectResult;
+            var data = result?.Value;
+
+            _mockRepo.Verify(repo => repo.GetCharacterByIdAsync(It.IsAny<string>()), Times.Once());
             Assert.IsType<ObjectResult>(result);
             Assert.IsType<ProblemDetails>(data);
             Assert.Equal(HttpStatusCode.InternalServerError, (HttpStatusCode)result.StatusCode);
