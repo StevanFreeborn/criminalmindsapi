@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="server.integrationTests" />
+		<InternalsVisibleTo Include="server.tests" />
 	</ItemGroup>
 
 </Project>
