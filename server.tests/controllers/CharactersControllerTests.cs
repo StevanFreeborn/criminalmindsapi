@@ -20,32 +20,13 @@ namespace tests.controllers
         }
 
         [Fact]
-        public async Task GetCharactersAsync_NoFilterParamsNoCharacters_Returns200StatusWithEmptyCollection()
-        {
-            var filter = new CharacterFilter();
-
-            _mockRepo
-                .Setup(repo => repo.GetCharactersAsync(filter))
-                .ReturnsAsync( new List<Character>());
-
-            var result = await _controller.GetCharactersAsync(filter) as ObjectResult;
-            var data = result?.Value as List<Character>;
-
-            _mockRepo.Verify(repo => repo.GetCharactersAsync(It.IsAny<CharacterFilter>()), Times.Once());
-            Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<List<Character>>(data);
-            Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)result.StatusCode);
-            Assert.Empty(data);
-        }
-
-        [Fact]
         public async Task GetCharactersAsync_NoFilterParamsWithCharacters_Returns200StatusWithCharactersCollection()
         {
             var filter = new CharacterFilter();
 
             var character = new Character
             {
-                Id = "",
+                Id = "62b7d5506c1b407771829926",
                 FirstName = "Jason",
                 LastName = "Gideon",
                 ActorFirstName = "Mandy",
