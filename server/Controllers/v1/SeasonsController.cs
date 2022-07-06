@@ -27,7 +27,7 @@ namespace server.Controllers.v1
         [HttpGet]
         [ProducesResponseType(typeof(List<Season>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<Season>>> GetSeasonsAsync()
+        public async Task<IActionResult> GetSeasonsAsync()
         {
             try
             {
@@ -53,7 +53,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(Season), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Season>> GetSeasonByNumberAsync(int number)
+        public async Task<IActionResult> GetSeasonByNumberAsync(int number)
         {
             try
             {

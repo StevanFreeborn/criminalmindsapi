@@ -31,7 +31,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(List<Character>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<Character>>> GetCharactersAsync([FromQuery] CharacterFilter? filter)
+        public async Task<IActionResult> GetCharactersAsync([FromQuery] CharacterFilter? filter)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace server.Controllers.v1
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Character>> GetCharacterByIdAsync(string id)
+        public async Task<IActionResult> GetCharacterByIdAsync(string id)
         {
 
             if (!ObjectId.TryParse(id, out _))
