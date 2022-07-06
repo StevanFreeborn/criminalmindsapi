@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
+using MongoDB.Bson;
 using server.Models;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace server.tests.integrationTests
 
             var data = await response.Content.ReadAsStreamAsync();
 
-            var characters = JsonSerializer.Deserialize<List<Character>>(data);
+            var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
@@ -154,6 +155,82 @@ namespace server.tests.integrationTests
             {
                 character.ActorFullName.ToLower().Should().Contain(actorNameValue);
             }
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_ValidCharacterId_Returns200StatusCodeWithCharacter()
+        {
+            var response = await _client.GetAsync(_endpoint);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
+
+            var characterId = characters[0].Id;
+
+            var url = $"{_endpoint}/{characterId}";
+
+            response = await _client.GetAsync(url);
+
+            data = await response.Content.ReadAsStreamAsync();
+
+            var character = JsonSerializer.Deserialize<Character>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+
+            character.Should().NotBeNull();
+            character.Should().BeOfType<Character>();
+            character.Id.Should().Be(characterId);
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_InvalidCharacterId_Returns400StatusCodeWithValidationProblemDetails()
+        {
+            var characterId = "1";
+
+            var url = $"{_endpoint}/{characterId}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ValidationProblemDetails>();
+            details.Detail.Should().NotBeNull();
+            details.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_ValidCharacterIdForNonExistentCharacter_Returns404StatusCodeWithProblemDetails()
+        {
+            var characterId = ObjectId.GenerateNewId();
+
+            var url = $"{_endpoint}/{characterId}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
+            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ProblemDetails>();
+            details.Detail.Should().NotBeNull();
         }
     }
 }
