@@ -6,7 +6,7 @@ using server.Models;
 using server.Persistence.Repositories;
 using System.Net;
 
-namespace server.tests.unitTests
+namespace server.tests.UnitTests
 {
     public class CharacterControllerUnitTests
     {

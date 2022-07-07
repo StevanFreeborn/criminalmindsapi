@@ -5,8 +5,9 @@ using MongoDB.Bson;
 using server.Models;
 using System.Net;
 using System.Text.Json;
+using server.tests.Helpers;
 
-namespace server.tests.integrationTests
+namespace server.tests.IntegrationTests
 {
     public class CharactersControllerIntegrationTests
     {
@@ -40,9 +41,7 @@ namespace server.tests.integrationTests
             var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             characters.Should().NotBeNull();
             characters.Should().BeOfType<List<Character>>();
@@ -63,9 +62,7 @@ namespace server.tests.integrationTests
             var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             characters.Should().NotBeNull();
             characters.Should().BeOfType<List<Character>>();
@@ -91,12 +88,11 @@ namespace server.tests.integrationTests
             var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             details.Should().NotBeNull();
             details.Should().BeOfType<ValidationProblemDetails>();
+            details.Errors.Should().NotBeNull();
         }
 
         [Fact]
@@ -113,9 +109,7 @@ namespace server.tests.integrationTests
             var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             characters.Should().NotBeNull();
             characters.Should().BeOfType<List<Character>>();
@@ -141,9 +135,7 @@ namespace server.tests.integrationTests
             var characters = JsonSerializer.Deserialize<List<Character>>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             characters.Should().NotBeNull();
             characters.Should().BeOfType<List<Character>>();
@@ -175,9 +167,7 @@ namespace server.tests.integrationTests
             var character = JsonSerializer.Deserialize<Character>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             character.Should().NotBeNull();
             character.Should().BeOfType<Character>();
@@ -198,9 +188,7 @@ namespace server.tests.integrationTests
             var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             details.Should().NotBeNull();
             details.Should().BeOfType<ValidationProblemDetails>();
@@ -222,9 +210,7 @@ namespace server.tests.integrationTests
             var details = JsonSerializer.Deserialize<ProblemDetails>(data, _serializerOptions);
 
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-            response.Headers.Should().ContainKey("X-Rate-Limit-Limit");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Remaining");
-            response.Headers.Should().ContainKey("X-Rate-Limit-Reset");
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
 
             details.Should().NotBeNull();
             details.Should().BeOfType<ProblemDetails>();
