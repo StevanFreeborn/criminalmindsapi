@@ -6,8 +6,9 @@ using server.Models;
 using System.Net;
 using System.Text.Json;
 using server.tests.Helpers;
+using server.tests.Http;
 
-namespace server.tests.IntegrationTests
+namespace server.tests.v1.IntegrationTests
 {
     public class CharactersControllerIntegrationTests
     {
@@ -17,11 +18,7 @@ namespace server.tests.IntegrationTests
 
         public CharactersControllerIntegrationTests()
         {
-            var webAppFactory = new WebApplicationFactory<Program>();
-
-            _client = webAppFactory.CreateDefaultClient();
-
-            _client.DefaultRequestHeaders.Add("x-api-version", "1");
+            _client = HttpClientFactory.GetHttpClient(1);
 
             _serializerOptions = new JsonSerializerOptions
             {
@@ -51,9 +48,9 @@ namespace server.tests.IntegrationTests
         [Fact]
         public async Task GetCharactersAsync_SeasonOneCharacters_Returns200StatusCodeWithCharacters()
         {
-            var seasonValue = 1;
+            var season = 1;
 
-            var url = $"{_endpoint}?season={seasonValue}";
+            var url = $"{_endpoint}?{nameof(season)}={season}";
 
             var response = await _client.GetAsync(url);
 
@@ -70,16 +67,16 @@ namespace server.tests.IntegrationTests
 
             foreach (var character in characters)
             {
-                character.Seasons.Should().Contain(seasonValue);
+                character.Seasons.Should().Contain(season);
             }
         }
 
         [Fact]
         public async Task GetCharactersAsync_InvalidSeasonQueryParameter_Returns400StatusCodeWithValidationProblemDetails()
         {
-            var seasonValue = "test";
+            var season = "test";
 
-            var url = $"{_endpoint}?season={seasonValue}";
+            var url = $"{_endpoint}?{nameof(season)}={season}";
 
             var response = await _client.GetAsync(url);
 
@@ -98,9 +95,9 @@ namespace server.tests.IntegrationTests
         [Fact]
         public async Task GetCharactersAsync_NameContainsJason_Returns200StatusCodeWithCharacters()
         {
-            var nameValue = "jason";
+            var name = "jason";
 
-            var url = $"{_endpoint}?name={nameValue}";
+            var url = $"{_endpoint}?{nameof(name)}={name}";
 
             var response = await _client.GetAsync(url);
 
@@ -117,16 +114,16 @@ namespace server.tests.IntegrationTests
 
             foreach (var character in characters)
             {
-                character.FullName.ToLower().Should().Contain(nameValue);
+                character.FullName.ToLower().Should().Contain(name);
             }
         }
 
         [Fact]
         public async Task GetCharactersAsync_ActorNameContainsMandy_Returns200StatusCodeWithCharacters()
         {
-            var actorNameValue = "mandy";
+            var actorName = "mandy";
 
-            var url = $"{_endpoint}?actorname={actorNameValue}";
+            var url = $"{_endpoint}?{nameof(actorName)}={actorName}";
 
             var response = await _client.GetAsync(url);
 
@@ -143,7 +140,7 @@ namespace server.tests.IntegrationTests
 
             foreach (var character in characters)
             {
-                character.ActorFullName.ToLower().Should().Contain(actorNameValue);
+                character.ActorFullName.ToLower().Should().Contain(actorName);
             }
         }
 

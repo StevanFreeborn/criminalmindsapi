@@ -6,14 +6,14 @@ using server.Models;
 using server.Persistence.Repositories;
 using System.Net;
 
-namespace server.tests.UnitTests
+namespace server.tests.v1.UnitTests
 {
-    public class CharacterControllerUnitTests
+    public class CharactersControllerUnitTests
     {
         private readonly Mock<ICharacterRepository> _mockRepo;
         private readonly CharactersController _controller;
 
-        public CharacterControllerUnitTests()
+        public CharactersControllerUnitTests()
         {
             _mockRepo = new Mock<ICharacterRepository>();
             _controller = new CharactersController(_mockRepo.Object);
@@ -68,29 +68,6 @@ namespace server.tests.UnitTests
         }
 
         [Fact]
-        public async Task GetCharacterByIdAsync_RepoThrowsException_Returns500StatusCodeWithProblemDetails()
-        {
-            var characterId = "62b7d5506c1b407771829926";
-
-            _mockRepo
-                .Setup(repo => repo.GetCharacterByIdAsync(characterId))
-                .Throws(new Exception());
-
-            var response = await _controller.GetCharacterByIdAsync(characterId) as ObjectResult;
-
-            var details = response.Value;
-
-            _mockRepo.Verify(repo => repo.GetCharacterByIdAsync(It.IsAny<string>()), Times.Once());
-
-            response.Should().NotBeNull();
-            response.Should().BeOfType<ObjectResult>();
-            response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
-
-            details.Should().NotBeNull();
-            details.Should().BeOfType<ProblemDetails>();
-        }
-
-        [Fact]
         public async Task GetCharacterByIdAsync_ValidCharacterId_Returns200StatusCodeWithCharacter()
         {
             var characterId = "62b7d5506c1b407771829926";
@@ -111,6 +88,29 @@ namespace server.tests.UnitTests
 
             character.Should().NotBeNull();
             character.Should().BeOfType<Character>();
+        }
+
+        [Fact]
+        public async Task GetCharacterByIdAsync_RepoThrowsException_Returns500StatusCodeWithProblemDetails()
+        {
+            var characterId = "62b7d5506c1b407771829926";
+
+            _mockRepo
+                .Setup(repo => repo.GetCharacterByIdAsync(characterId))
+                .Throws(new Exception());
+
+            var response = await _controller.GetCharacterByIdAsync(characterId) as ObjectResult;
+
+            var details = response.Value;
+
+            _mockRepo.Verify(repo => repo.GetCharacterByIdAsync(It.IsAny<string>()), Times.Once());
+
+            response.Should().NotBeNull();
+            response.Should().BeOfType<ObjectResult>();
+            response.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ProblemDetails>();
         }
     }
 }
