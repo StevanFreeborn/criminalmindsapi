@@ -51,7 +51,7 @@ namespace server.tests.IntegrationTests
         public async Task GetEpisodesAsync_SeasonOneEpisodes_Returns200StatusCodeWithEpisodes()
         {
             var seasonValue = 1;
-            
+
             var url = $"{_endpoint}?season={seasonValue}";
 
             var response = await _client.GetAsync(url);
@@ -92,6 +92,126 @@ namespace server.tests.IntegrationTests
             details.Should().NotBeNull();
             details.Should().BeOfType<ValidationProblemDetails>();
             details.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetEpisodesAsync_EpisodesAfterJanuary2020_Returns200StatusCodeWithEpisodes()
+        {
+            var startDateValue = new DateTime(2020, 1, 1);
+
+            var url = $"{_endpoint}?startdate={startDateValue}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var episodes = JsonSerializer.Deserialize<List<Episode>>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            episodes.Should().NotBeNull();
+            episodes.Should().BeOfType<List<Episode>>();
+            episodes.Should().HaveCountGreaterThan(0);
+
+            foreach (var episode in episodes)
+            {
+                episode.AirDate.Should().BeOnOrAfter(startDateValue);
+            }
+        }
+
+        [Fact]
+        public async Task GetEpisodesAsync_InvalidStartDateQueryParam_Returns400StatusCodeWithValidationProblemDetails()
+        {
+            var startDateValue = "test";
+
+            var url = $"{_endpoint}?startdate={startDateValue}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ValidationProblemDetails>();
+            details.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetEpisodesAsync_EpisodesBeforeJanuary2020_Returns200StatusCodeWithEpisodes()
+        {
+            var endDateValue = new DateTime(2020, 1, 1);
+
+            var url = $"{_endpoint}?enddate={endDateValue}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var episodes = JsonSerializer.Deserialize<List<Episode>>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            episodes.Should().NotBeNull();
+            episodes.Should().BeOfType<List<Episode>>();
+            episodes.Should().HaveCountGreaterThan(0);
+
+            foreach (var episode in episodes)
+            {
+                episode.AirDate.Should().BeOnOrBefore(endDateValue);
+            }
+        }
+
+        [Fact]
+        public async Task GetEpisodesAsync_InvalidEndDateQueryParam_Returns400StatusCodeWithValidationProblemDetails()
+        {
+            var startDateValue = "test";
+
+            var url = $"{_endpoint}?startdate={startDateValue}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ValidationProblemDetails>();
+            details.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetEpisodesAsync_EpisodeTitlesThatContainThe_Returns200StatusCodeWithEpisodes()
+        {
+            var titleValue = "the";
+
+            var url = $"{_endpoint}?title={titleValue}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var episodes = JsonSerializer.Deserialize<List<Episode>>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            episodes.Should().NotBeNull();
+            episodes.Should().BeOfType<List<Episode>>();
+            episodes.Should().HaveCountGreaterThan(0);
+
+            foreach (var episode in episodes)
+            {
+                episode.Title.ToLower().Should().Contain(titleValue);
+            }
         }
     }
 }
