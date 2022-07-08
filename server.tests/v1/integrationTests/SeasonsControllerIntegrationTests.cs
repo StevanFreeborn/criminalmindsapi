@@ -1,4 +1,5 @@
 ﻿using server.tests.Http;
+using server.tests.Options;
 using System.Text.Json;
 
 namespace server.tests.v1.integrationTests
@@ -13,10 +14,7 @@ namespace server.tests.v1.integrationTests
         {
             _client = HttpClientFactory.GetHttpClient(1);
 
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            _serializerOptions = OptionsFactory.GetJsonSerializerOptions();
 
             _endpoint = "/api/seasons";
         }

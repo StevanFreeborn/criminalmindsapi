@@ -7,6 +7,7 @@ using System.Net;
 using System.Text.Json;
 using server.tests.Helpers;
 using server.tests.Http;
+using server.tests.Options;
 
 namespace server.tests.v1.IntegrationTests
 {
@@ -20,10 +21,7 @@ namespace server.tests.v1.IntegrationTests
         {
             _client = HttpClientFactory.GetHttpClient(1);
 
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            _serializerOptions = OptionsFactory.GetJsonSerializerOptions();
 
             _endpoint = "/api/characters";
         }

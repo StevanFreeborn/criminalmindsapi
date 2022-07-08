@@ -1,7 +1,6 @@
 ﻿using Moq;
 using server.Controllers.v1;
 using server.Persistence.Repositories;
-using System.Runtime.CompilerServices;
 
 namespace server.tests.v1.unitTests
 {

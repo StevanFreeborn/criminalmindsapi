@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using server.Models;
 using server.tests.Helpers;
 using server.tests.Http;
+using server.tests.Options;
 using System.Net;
 using System.Text.Json;
 
@@ -18,10 +19,7 @@ namespace server.tests.v1.IntegrationTests
         {
             _client = HttpClientFactory.GetHttpClient(1);
 
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            _serializerOptions = OptionsFactory.GetJsonSerializerOptions();
 
             _endpoint = "/api/episodes";
         }
