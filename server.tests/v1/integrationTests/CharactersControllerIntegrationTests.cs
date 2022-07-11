@@ -19,7 +19,7 @@ namespace server.tests.v1.IntegrationTests
 
         public CharactersControllerIntegrationTests()
         {
-            _client = HttpClientFactory.GetHttpClient(1);
+            _client = HttpClientFactory.GetClient(1);
 
             _serializerOptions = OptionsFactory.GetJsonSerializerOptions();
 

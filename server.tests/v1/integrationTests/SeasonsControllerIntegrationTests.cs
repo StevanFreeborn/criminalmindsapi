@@ -12,7 +12,7 @@ namespace server.tests.v1.integrationTests
 
         public SeasonsControllerIntegrationTests()
         {
-            _client = HttpClientFactory.GetHttpClient(1);
+            _client = HttpClientFactory.GetClient(1);
 
             _serializerOptions = OptionsFactory.GetJsonSerializerOptions();
 

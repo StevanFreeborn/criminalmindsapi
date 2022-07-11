@@ -4,7 +4,7 @@ namespace server.tests.Http
 {
     internal static class HttpClientFactory
     {
-        public static HttpClient GetHttpClient(int version)
+        public static HttpClient GetClient(int version)
         {
             var webAppFactory = new WebApplicationFactory<Program>();
 
