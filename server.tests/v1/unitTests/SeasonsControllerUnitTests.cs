@@ -67,13 +67,47 @@ namespace server.tests.v1.unitTests
         [Fact]
         public async Task GetSeasonByNumberAsync_ValidSeasonNumber_Returns200StatusCodeWithSeason()
         {
-            throw new NotImplementedException();
+            var seasonNumber = 1;
+
+            _mockRepo
+                 .Setup(repo => repo.GetSeasonByNumberAsync(seasonNumber))
+                 .ReturnsAsync(new Season());
+
+            var response = await _controller.GetSeasonByNumberAsync(seasonNumber) as ObjectResult;
+
+            var season = response.Value;
+
+            _mockRepo.Verify(repo => repo.GetSeasonByNumberAsync(It.IsAny<int>()), Times.Once());
+
+            response.Should().NotBeNull();
+            response.Should().BeOfType<OkObjectResult>();
+            response.StatusCode.Should().Be((int)HttpStatusCode.OK);
+
+            season.Should().NotBeNull();
+            season.Should().BeOfType<Episode>();
         }
 
         [Fact]
         public async Task GetSeasonByNumberAsync_ValidSeasonNumberForNonExistentSeason_Returns404StatusCodeWithProblemDetails()
         {
-            throw new NotImplementedException();
+            var seasonNumber = 20;
+
+            _mockRepo
+                .Setup(repo => repo.GetSeasonByNumberAsync(seasonNumber))
+                .ReturnsAsync(null as Season);
+
+            var response = await _controller.GetSeasonByNumberAsync(seasonNumber) as ObjectResult;
+
+            var details = response.Value;
+
+            _mockRepo.Verify(repo => repo.GetSeasonByNumberAsync(It.IsAny<int>()), Times.Once());
+
+            response.Should().NotBeNull();
+            response.Should().BeOfType<ObjectResult>();
+            response.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ProblemDetails>();
         }
 
         [Fact]
