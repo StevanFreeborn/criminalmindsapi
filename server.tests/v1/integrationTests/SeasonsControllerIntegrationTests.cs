@@ -7,7 +7,7 @@ using server.tests.Options;
 using System.Net;
 using System.Text.Json;
 
-namespace server.tests.v1.integrationTests
+namespace server.tests.v1.IntegrationTests
 {
     public class SeasonsControllerIntegrationTests
     {

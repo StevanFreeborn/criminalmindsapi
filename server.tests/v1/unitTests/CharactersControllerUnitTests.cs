@@ -91,6 +91,30 @@ namespace server.tests.v1.UnitTests
         }
 
         [Fact]
+        public async Task GetCharacterByIdAsync_ValidCharacterIdForNonExistentCharacter_Returns404StatusCodeWithProblemDetails()
+        {
+            var characterId = "62b7d5506c1b407771829926";
+
+            _mockRepo
+                .Setup(repo => repo.GetCharacterByIdAsync(characterId))
+                .ReturnsAsync(null as Character);
+
+            var response = await _controller.GetCharacterByIdAsync(characterId) as ObjectResult;
+
+            var details = response.Value;
+
+            _mockRepo.Verify(repo => repo.GetCharacterByIdAsync(It.IsAny<string>()), Times.Once());
+
+            response.Should().NotBeNull();
+            response.Should().BeOfType<ObjectResult>();
+            response.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ProblemDetails>();
+        }
+
+
+        [Fact]
         public async Task GetCharacterByIdAsync_RepoThrowsException_Returns500StatusCodeWithProblemDetails()
         {
             var characterId = "62b7d5506c1b407771829926";
