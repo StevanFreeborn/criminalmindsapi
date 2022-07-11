@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using server.Models;
 using server.tests.Helpers;
 using server.tests.Http;
@@ -211,6 +212,76 @@ namespace server.tests.v1.IntegrationTests
             {
                 quote.Narrator.ToLower().Should().Contain(narrator);
             }
+        }
+
+        [Fact]
+        public async Task GetQuotesById_ValidQuoteId_Returns200StatusCodeWithQuote()
+        {
+            var response = await _client.GetAsync(_endpoint);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var quotes = JsonSerializer.Deserialize<List<Quote>>(data, _serializerOptions);
+
+            var quoteId = quotes[0].Id;
+
+            var url = $"{_endpoint}/{quoteId}";
+
+            response = await _client.GetAsync(url);
+
+            data = await response.Content.ReadAsStreamAsync();
+
+            var quote = JsonSerializer.Deserialize<Quote>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            quote.Should().NotBeNull();
+            quote.Should().BeOfType<Quote>();
+            quote.Id.Should().Be(quoteId);
+        }
+
+        [Fact]
+        public async Task GetQuotesById_InvalidQuoteId_Returns400StatusCodeWithValidationProblemDetails()
+        {
+            var quoteId = "1";
+
+            var url = $"{_endpoint}/{quoteId}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ValidationProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ValidationProblemDetails>();
+            details.Detail.Should().NotBeNull();
+            details.Errors.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetQuoteByIdAsync_ValidQuoteIdForNonExistentQuote_Returns404StatusCodeWithProblemDetails()
+        {
+            var quoteId = ObjectId.GenerateNewId();
+
+            var url = $"{_endpoint}/{quoteId}";
+
+            var response = await _client.GetAsync(url);
+
+            var data = await response.Content.ReadAsStreamAsync();
+
+            var details = JsonSerializer.Deserialize<ProblemDetails>(data, _serializerOptions);
+
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            AssertHelper.CheckForRateLimitingHeaders(response.Headers);
+
+            details.Should().NotBeNull();
+            details.Should().BeOfType<ProblemDetails>();
+            details.Detail.Should().NotBeNull();
         }
     }
 }
