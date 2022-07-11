@@ -84,7 +84,7 @@ namespace server.tests.v1.unitTests
             response.StatusCode.Should().Be((int)HttpStatusCode.OK);
 
             season.Should().NotBeNull();
-            season.Should().BeOfType<Episode>();
+            season.Should().BeOfType<Season>();
         }
 
         [Fact]
