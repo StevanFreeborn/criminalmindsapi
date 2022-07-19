@@ -7,9 +7,13 @@ import Loading from '../components/loading';
 import LoadingError from '../components/loadingError';
 
 import CharacterService from '../services/characterService';
+import DataButtonHolder from '../components/dataButtonHolder';
+import DataButton from '../components/dataButton';
 const characterService = new CharacterService();
 
 export default function Home() {
+
+    const models = [{name: 'Characters'}, {name: 'Quotes'}, {name: 'Episodes'}, {name: 'Seasons'}];
 
     const [characters, setCharacters] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -35,6 +39,20 @@ export default function Home() {
         getCharacters();
 
     }, []);
+
+    const getDataButtons = () => {
+
+        return models.map(model => {
+            
+            return (
+                <DataButton 
+                    label={model.name}
+                />
+            );
+
+        });
+
+    }
 
     const getCharacterCards = () => {
 
@@ -64,6 +82,10 @@ export default function Home() {
     return (
         <>
             <Greeting />
+
+            <DataButtonHolder>
+                {getDataButtons()}
+            </DataButtonHolder>
 
             {characters.length > 0 ?
 
