@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 
 export default function CharacterCard(props) {
-    
+
     const image = new URL(props.character.image).pathname;
     const characterName = props.character.fullName;
     const firstEpisode = props.character.firstEpisode;
