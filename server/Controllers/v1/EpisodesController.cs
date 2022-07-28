@@ -49,14 +49,12 @@ namespace server.Controllers.v1
         /// </summary>
         /// <param name="number">The number of the episode in the series.</param>
         /// <response code="200">Returns the episode requested.</response>
-        /// <response code="400">Not a valid request.</response>
         /// <response code="404">Unable to find an episode with the provided number.</response>
         /// <response code="500">Failed to get episode.</response>
         /// <returns>Returns the episode requested.</returns>
         [MapToApiVersion("1.0")]
         [HttpGet("{number:int}")]
         [ProducesResponseType(typeof(Episode), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetEpisodeByNumberAsync(int number)

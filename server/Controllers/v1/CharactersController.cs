@@ -66,7 +66,7 @@ namespace server.Controllers.v1
             if (!ObjectId.TryParse(id, out _))
             {
                 ModelState.AddModelError(nameof(id), $"{id} is not a valid id");
-                return ValidationProblem();
+                return ValidationProblem(detail: "Invalid request");
             }
 
             try
