@@ -21,7 +21,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/server
-        working-directory: ${{ env.WORKING_DIRECTORY }}/Server.API
+        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
