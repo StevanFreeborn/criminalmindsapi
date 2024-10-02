@@ -92,6 +92,7 @@ namespace server.tests.v1.UnitTests
             character.Should().BeOfType<Quote>();
         }
 
+        [Fact]
         public async Task GetQuoteByIdAsync_ValidIdForNonExistentQuote_Returns404StatusCodeWithProblemDetails()
         {
             var quoteId = "62b7d5506c1b407771829926";
