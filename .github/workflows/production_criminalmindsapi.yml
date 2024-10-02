@@ -19,13 +19,13 @@ jobs:
         run: dotnet build --configuration Release
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/server
+        run: dotnet publish -c Release -o release
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: server
-          path: ${{env.DOTNET_ROOT}}/server
+          path: release
   deploy:
     runs-on: windows-latest
     needs: build
